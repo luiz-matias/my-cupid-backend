@@ -31,3 +31,6 @@ jobs:
     - name: Add label if tests fail
       uses: actions/labeler@v4.3.0
       if: ${{ failure() }}
+    - name: Add label if tests pass
+      uses: actions/labeler@v4.3.0
+      if: ${{ success() }}
