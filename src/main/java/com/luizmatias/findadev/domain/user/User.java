@@ -1,6 +1,7 @@
 package com.luizmatias.findadev.domain.user;
 
 import com.luizmatias.findadev.domain.city.City;
+import com.luizmatias.findadev.domain.match.Match;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -27,15 +28,19 @@ public class User {
     private String email;
     private String password;
     private String bio;
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
     @ManyToMany
     @JoinTable(
             name = "likes",
             joinColumns = @JoinColumn(name = "from_user_id"),
             inverseJoinColumns = @JoinColumn(name = "to_user_id")
     )
-    private Set<User> users;
-    @ManyToOne
-    @JoinColumn(name = "city_id")
-    private City city;
+    private List<User> likedUsers;
+    @OneToMany(mappedBy = "clientUser")
+    private List<Match> matchesAsClient;
+    @OneToMany(mappedBy = "developerUser")
+    private List<Match> matchesAsDeveloper;
 
 }
