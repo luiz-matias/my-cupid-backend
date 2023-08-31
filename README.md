@@ -67,10 +67,10 @@ Spring Boot is an opinionated extension from Spring that allows us to develop ba
 
 # Roadmap
 
-- [ ] Project Setup
+- [X] Project Setup
   - [X] Readme About the Project
   - [X] List of epics and stories
-  - [ ] Environment Preparation
+  - [X] Environment Preparation
 - [ ] Authentication
   - [ ] Login
   - [ ] Registration
