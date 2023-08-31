@@ -28,6 +28,7 @@ public class User {
     private String email;
     private String password;
     private String bio;
+    private UserType userType;
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
