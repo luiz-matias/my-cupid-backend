@@ -7,9 +7,8 @@
   <p align="center">
     A system that connects developers and clients in a Tinder-style experience.
   </p>
+  <img align="center" src="https://github.com/luiz-matias/find-a-dev-backend/actions/workflows/maven.yml/badge.svg" alt="Tests status">
 </div>
-
-[![Tests](https://github.com/luiz-matias/find-a-dev-backend/actions/workflows/maven.yml/badge.svg)](https://github.com/luiz-matias/find-a-dev-backend/actions/workflows/maven.yml)
 
 # Project Features
 
