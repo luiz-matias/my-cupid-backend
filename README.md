@@ -9,6 +9,8 @@
   </p>
 </div>
 
+[![Tests](https://github.com/luiz-matias/find-a-dev-backend/actions/workflows/maven.yml/badge.svg)](https://github.com/luiz-matias/find-a-dev-backend/actions/workflows/maven.yml)
+
 # Project Features
 
 The application will have the following features:
