@@ -7,8 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class FindADevApplicationTests {
 
 	@Test
-	void contextLoads() throws Exception {
-		throw new Exception();
+	void contextLoads() {
 	}
 
 }
