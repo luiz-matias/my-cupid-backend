@@ -73,13 +73,19 @@ Spring Boot is an opinionated extension from Spring that allows us to develop ba
   - [ ] Environment Preparation
 - [ ] Authentication
   - [ ] Login
-    - [ ] Business Rules
-    - [ ] Layout
-    - [ ] Integration
   - [ ] Registration
-    - [ ] Business Rules
-    - [ ] Layout
-    - [ ] Integration
+  - [ ] Password Recovery
+- [ ] Account Management
+  - [ ] Edit Profile
+  - [ ] Change Password
+  - [ ] Delete Account
+  - [ ] Logout
+- [ ] Finding and Matching Users
+  - [ ] List of Devs
+  - [ ] List of Clients
+  - [ ] Match
+- [ ] Messaging
+  - [ ] Chat between Devs and Clients
 
 # License
 
