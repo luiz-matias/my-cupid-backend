@@ -1,6 +1,6 @@
 package com.luizmatias.findadev.domain.user;
 
-import com.luizmatias.findadev.domain.city.City;
+import com.luizmatias.findadev.domain.address.Address;
 import com.luizmatias.findadev.domain.match.Match;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,14 +24,14 @@ public class User {
     private Long id;
     private String firstName;
     private String lastName;
+    private String bio;
     private LocalDate birth;
     private String email;
     private String password;
-    private String bio;
     private UserType userType;
-    @ManyToOne
-    @JoinColumn(name = "city_id")
-    private City city;
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
     @ManyToMany
     @JoinTable(
             name = "likes",
