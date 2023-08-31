@@ -1,6 +1,6 @@
-package com.luizmatias.findadev.user;
+package com.luizmatias.findadev.domain.user;
 
-import com.luizmatias.findadev.city.City;
+import com.luizmatias.findadev.domain.city.City;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

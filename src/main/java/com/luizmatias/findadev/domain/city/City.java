@@ -1,4 +1,4 @@
-package com.luizmatias.findadev.city;
+package com.luizmatias.findadev.domain.city;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
