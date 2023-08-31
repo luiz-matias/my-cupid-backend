@@ -3,9 +3,9 @@
 <br />
 <div align="center">
   <img src="https://i.imgur.com/42m4MaA.png" alt="Project Logo" height="200">
-  <h1 align="center">Code conventions</h1>
+  <h1 align="center">Guidelines and Code conventions</h1>
   <p align="center">
-    Commit and branch patterns to follow in the project
+    Style guidelines and conventions to follow in the project
   </p>
 </div>
 
@@ -42,3 +42,16 @@ When the category of branches available are:
 * `bugfix/fix-email-on-user-form`
 * `hotfix/fix-user-form-submitting-button`
 * `test/changing-restful-api-to-graphql`
+
+# PR Naming and Descriptions
+All PR's names should follow the following convention:
+
+`CATEGORY_OF_BRANCH`: `Description`
+
+When the category of PRs available are the same as branches. Please fill the pull request template before opening the PR.
+
+### Examples
+* `FEATURE: User Form Implementation`
+* `BUGFIX: Fix Email Field on User Form`
+* `HOTFIX: Fix User Form Submitting Button`
+* `TEST: Changing RESTFUL APIs to GraphQL`
