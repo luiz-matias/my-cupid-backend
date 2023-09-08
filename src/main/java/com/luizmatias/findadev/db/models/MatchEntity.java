@@ -1,6 +1,5 @@
-package com.luizmatias.findadev.domain.match;
+package com.luizmatias.findadev.db.models;
 
-import com.luizmatias.findadev.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,17 +14,17 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Match {
+public class MatchEntity {
 
     @Id
     @GeneratedValue
     private Long id;
     @ManyToOne
     @JoinColumn(name = "client_id")
-    private User clientUser;
+    private UserEntity clientUserEntity;
     @ManyToOne
     @JoinColumn(name = "developer_id")
-    private User developerUser;
+    private UserEntity developerUserEntity;
     private LocalDateTime matchedAt;
     private LocalDateTime unmatchedAt;
 
