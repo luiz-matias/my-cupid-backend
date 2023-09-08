@@ -38,9 +38,9 @@ public class UserEntity {
             inverseJoinColumns = @JoinColumn(name = "to_user_id")
     )
     private List<UserEntity> likedUserEntities;
-    @OneToMany(mappedBy = "clientUser")
+    @OneToMany(mappedBy = "clientUserEntity")
     private List<MatchEntity> matchesAsClient;
-    @OneToMany(mappedBy = "developerUser")
+    @OneToMany(mappedBy = "developerUserEntity")
     private List<MatchEntity> matchesAsDeveloper;
 
 }
