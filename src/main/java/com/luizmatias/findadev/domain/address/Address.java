@@ -1,7 +1,9 @@
 package com.luizmatias.findadev.domain.address;
 
-import com.luizmatias.findadev.domain.user.User;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +28,5 @@ public class Address {
     private String country;
     private Double latitude;
     private Double longitude;
-    @OneToOne(mappedBy = "address")
-    private User user;
 
 }
