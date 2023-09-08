@@ -5,7 +5,7 @@ import com.luizmatias.findadev.domain.entities.Address;
 
 public class AddressDTOMapper {
 
-    static Address toAddress(AddressDTO addressDTO) {
+    public static Address toAddress(AddressDTO addressDTO) {
         return new Address(
                 addressDTO.id(),
                 addressDTO.addressLine1(),
@@ -19,7 +19,7 @@ public class AddressDTOMapper {
         );
     }
 
-    static AddressDTO toAddressDTO(Address address) {
+    public static AddressDTO toAddressDTO(Address address) {
         return new AddressDTO(
                 address.getId(),
                 address.getAddressLine1(),

@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class UserTypeDTOMapper {
 
-    static UserType toUserType(UserTypeDTO userTypeDTO) {
+    public static UserType toUserType(UserTypeDTO userTypeDTO) {
         if (Objects.equals(userTypeDTO.userType(), UserTypeDTO.CLIENT)) {
             return UserType.CLIENT;
         } else {
@@ -15,7 +15,7 @@ public class UserTypeDTOMapper {
         }
     }
 
-    static UserTypeDTO toUserTypeDTO(UserType userType) {
+    public static UserTypeDTO toUserTypeDTO(UserType userType) {
         return switch (userType) {
             case CLIENT -> new UserTypeDTO(UserTypeDTO.CLIENT);
             case DEVELOPER -> new UserTypeDTO(UserTypeDTO.DEVELOPER);

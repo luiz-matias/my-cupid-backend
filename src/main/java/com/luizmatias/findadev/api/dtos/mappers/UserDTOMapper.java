@@ -7,7 +7,7 @@ import java.util.Collections;
 
 public class UserDTOMapper {
 
-    static User toUser(UserDTO userDTO) {
+    public static User toUser(UserDTO userDTO) {
         return new User(
                 userDTO.id(),
                 userDTO.firstName(),
@@ -24,7 +24,7 @@ public class UserDTOMapper {
         );
     }
 
-    static UserDTO toUserDTO(User user) {
+    public static UserDTO toUserDTO(User user) {
         return new UserDTO(
                 user.getId(),
                 user.getFirstName(),
@@ -41,7 +41,7 @@ public class UserDTOMapper {
         );
     }
 
-    static User toUserWithoutLikesAndMatches(UserDTO userDTO) {
+    public static User toUserWithoutLikesAndMatches(UserDTO userDTO) {
         return new User(
                 userDTO.id(),
                 userDTO.firstName(),
@@ -58,7 +58,7 @@ public class UserDTOMapper {
         );
     }
 
-    static UserDTO toUserDTOWithoutLikesAndMatches(User user) {
+    public static UserDTO toUserDTOWithoutLikesAndMatches(User user) {
         return new UserDTO(
                 user.getId(),
                 user.getFirstName(),

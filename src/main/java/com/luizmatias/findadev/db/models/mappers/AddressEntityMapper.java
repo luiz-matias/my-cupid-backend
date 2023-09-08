@@ -5,7 +5,7 @@ import com.luizmatias.findadev.domain.entities.Address;
 
 public class AddressEntityMapper {
 
-    static Address toAddress(AddressEntity addressEntity) {
+    public static Address toAddress(AddressEntity addressEntity) {
         return new Address(
                 addressEntity.getId(),
                 addressEntity.getAddressLine1(),
@@ -19,7 +19,7 @@ public class AddressEntityMapper {
         );
     }
 
-    static AddressEntity toAddressEntity(Address address) {
+    public static AddressEntity toAddressEntity(Address address) {
         return new AddressEntity(
                 address.getId(),
                 address.getAddressLine1(),

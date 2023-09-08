@@ -5,7 +5,7 @@ import com.luizmatias.findadev.domain.entities.Match;
 
 public class MatchEntityMapper {
 
-    static Match toMatch(MatchEntity matchEntity) {
+    public static Match toMatch(MatchEntity matchEntity) {
         return new Match(
                 matchEntity.getId(),
                 UserEntityMapper.toUserWithoutLikesAndMatches(matchEntity.getClientUserEntity()),
@@ -15,7 +15,7 @@ public class MatchEntityMapper {
         );
     }
 
-    static MatchEntity toMatchEntity(Match match) {
+    public static MatchEntity toMatchEntity(Match match) {
         return new MatchEntity(
                 match.getId(),
                 UserEntityMapper.toUserEntity(match.getClientUser()),

@@ -5,7 +5,7 @@ import com.luizmatias.findadev.domain.entities.Match;
 
 public class MatchDTOMapper {
 
-    static Match toMatch(MatchDTO matchDTO) {
+    public static Match toMatch(MatchDTO matchDTO) {
         return new Match(
                 matchDTO.id(),
                 UserDTOMapper.toUserWithoutLikesAndMatches(matchDTO.clientUser()),
@@ -15,7 +15,7 @@ public class MatchDTOMapper {
         );
     }
 
-    static MatchDTO toMatchDTO(Match match) {
+    public static MatchDTO toMatchDTO(Match match) {
         return new MatchDTO(
                 match.getId(),
                 UserDTOMapper.toUserDTO(match.getClientUser()),

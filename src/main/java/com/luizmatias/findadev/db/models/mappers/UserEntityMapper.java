@@ -7,7 +7,7 @@ import java.util.Collections;
 
 public class UserEntityMapper {
 
-    static User toUser(UserEntity userEntity) {
+    public static User toUser(UserEntity userEntity) {
         return new User(
                 userEntity.getId(),
                 userEntity.getFirstName(),
@@ -24,7 +24,7 @@ public class UserEntityMapper {
         );
     }
 
-    static UserEntity toUserEntity(User user) {
+    public static UserEntity toUserEntity(User user) {
         return new UserEntity(
                 user.getId(),
                 user.getFirstName(),
@@ -41,7 +41,7 @@ public class UserEntityMapper {
         );
     }
 
-    static User toUserWithoutLikesAndMatches(UserEntity userEntity) {
+    public static User toUserWithoutLikesAndMatches(UserEntity userEntity) {
         return new User(
                 userEntity.getId(),
                 userEntity.getFirstName(),
@@ -58,7 +58,7 @@ public class UserEntityMapper {
         );
     }
 
-    static UserEntity toUserEntityWithoutLikesAndMatches(User user) {
+    public static UserEntity toUserEntityWithoutLikesAndMatches(User user) {
         return new UserEntity(
                 user.getId(),
                 user.getFirstName(),
