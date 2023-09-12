@@ -31,7 +31,7 @@ public interface AddressRepository {
     Address updateAddress(Address address);
 
     /**
-     * deletes an user
+     * deletes an address
      *
      * @param address the address to be deleted
      */
