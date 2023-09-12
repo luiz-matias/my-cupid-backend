@@ -1,4 +1,4 @@
-package com.luizmatias.findadev.domain.user;
+package com.luizmatias.findadev.domain.entities;
 
 public enum UserType {
     CLIENT,

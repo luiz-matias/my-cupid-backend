@@ -1,7 +1,6 @@
-package com.luizmatias.findadev.domain.user;
+package com.luizmatias.findadev.db.models;
 
-import com.luizmatias.findadev.domain.address.Address;
-import com.luizmatias.findadev.domain.match.Match;
+import com.luizmatias.findadev.domain.entities.UserType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +16,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue
@@ -31,17 +30,17 @@ public class User {
     private UserType userType;
     @OneToOne
     @JoinColumn(name = "address_id")
-    private Address address;
+    private AddressEntity addressEntity;
     @ManyToMany
     @JoinTable(
             name = "likes",
             joinColumns = @JoinColumn(name = "from_user_id"),
             inverseJoinColumns = @JoinColumn(name = "to_user_id")
     )
-    private List<User> likedUsers;
-    @OneToMany(mappedBy = "clientUser")
-    private List<Match> matchesAsClient;
-    @OneToMany(mappedBy = "developerUser")
-    private List<Match> matchesAsDeveloper;
+    private List<UserEntity> likedUserEntities;
+    @OneToMany(mappedBy = "clientUserEntity")
+    private List<MatchEntity> matchesAsClient;
+    @OneToMany(mappedBy = "developerUserEntity")
+    private List<MatchEntity> matchesAsDeveloper;
 
 }

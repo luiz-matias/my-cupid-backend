@@ -1,4 +1,4 @@
-package com.luizmatias.findadev.domain.address;
+package com.luizmatias.findadev.db.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +15,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Address {
+public class AddressEntity {
 
     @Id
     @GeneratedValue
