@@ -1,12 +1,12 @@
 package com.luizmatias.findadev.api.dtos;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public record MatchDTO(
         Long id,
         UserDTO clientUser,
         UserDTO developerUser,
-        LocalDateTime matchedAt,
-        LocalDateTime unmatchedAt
+        Date matchedAt,
+        Date unmatchedAt
 ) {
 }
