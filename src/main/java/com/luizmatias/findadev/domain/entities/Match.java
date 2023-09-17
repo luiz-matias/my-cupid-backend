@@ -1,19 +1,62 @@
 package com.luizmatias.findadev.domain.entities;
 
-import lombok.*;
+import java.util.Date;
 
-import java.time.LocalDateTime;
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(of = "id")
 public class Match {
     private Long id;
     private User clientUser;
     private User developerUser;
-    private LocalDateTime matchedAt;
-    private LocalDateTime unmatchedAt;
+    private Date matchedAt;
+    private Date unmatchedAt;
 
+    public Match() {
+    }
+
+    public Match(Long id, User clientUser, User developerUser, Date matchedAt, Date unmatchedAt) {
+        this.id = id;
+        this.clientUser = clientUser;
+        this.developerUser = developerUser;
+        this.matchedAt = matchedAt;
+        this.unmatchedAt = unmatchedAt;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getClientUser() {
+        return clientUser;
+    }
+
+    public void setClientUser(User clientUser) {
+        this.clientUser = clientUser;
+    }
+
+    public User getDeveloperUser() {
+        return developerUser;
+    }
+
+    public void setDeveloperUser(User developerUser) {
+        this.developerUser = developerUser;
+    }
+
+    public Date getMatchedAt() {
+        return matchedAt;
+    }
+
+    public void setMatchedAt(Date matchedAt) {
+        this.matchedAt = matchedAt;
+    }
+
+    public Date getUnmatchedAt() {
+        return unmatchedAt;
+    }
+
+    public void setUnmatchedAt(Date unmatchedAt) {
+        this.unmatchedAt = unmatchedAt;
+    }
 }
