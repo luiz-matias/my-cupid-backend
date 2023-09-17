@@ -1,6 +1,7 @@
 package com.luizmatias.findadev.domain.usecases.user;
 
 import com.luizmatias.findadev.domain.entities.User;
+import com.luizmatias.findadev.domain.exceptions.ResourceAlreadyExistsException;
 import com.luizmatias.findadev.domain.repositories.UserRepository;
 
 public class CreateUserInteractor {
@@ -11,7 +12,11 @@ public class CreateUserInteractor {
         this.userRepository = userRepository;
     }
 
-    User createUser(User user) {
+    public User createUser(User user) throws ResourceAlreadyExistsException {
+        if (userRepository.getUserByEmail(user.getEmail()).isPresent()) {
+            throw new ResourceAlreadyExistsException("User with its email already exists");
+        }
+
         return userRepository.createUser(user);
     }
 
