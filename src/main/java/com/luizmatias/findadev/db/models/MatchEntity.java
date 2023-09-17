@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "matches")
@@ -25,7 +25,7 @@ public class MatchEntity {
     @ManyToOne
     @JoinColumn(name = "developer_id")
     private UserEntity developerUserEntity;
-    private LocalDateTime matchedAt;
-    private LocalDateTime unmatchedAt;
+    private Date matchedAt;
+    private Date unmatchedAt;
 
 }

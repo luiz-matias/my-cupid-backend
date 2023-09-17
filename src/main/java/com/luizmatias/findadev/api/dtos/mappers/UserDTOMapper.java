@@ -1,6 +1,6 @@
 package com.luizmatias.findadev.api.dtos.mappers;
 
-import com.luizmatias.findadev.api.dtos.UserDTO;
+import com.luizmatias.findadev.api.dtos.responses.UserDTO;
 import com.luizmatias.findadev.domain.entities.User;
 
 import java.util.Collections;
@@ -16,9 +16,11 @@ public class UserDTOMapper {
                 userDTO.birth(),
                 userDTO.email(),
                 userDTO.password(),
-                UserTypeDTOMapper.toUserType(userDTO.userType()),
-                AddressDTOMapper.toAddress(userDTO.address()),
+                UserTypeMapper.toUserType(userDTO.userType()),
+                userDTO.latitude(),
+                userDTO.longitude(),
                 userDTO.likedUsers().stream().map(UserDTOMapper::toUserWithoutLikesAndMatches).toList(),
+                userDTO.likedByUsers().stream().map(UserDTOMapper::toUserWithoutLikesAndMatches).toList(),
                 userDTO.matchesAsClient().stream().map(MatchDTOMapper::toMatch).toList(),
                 userDTO.matchesAsDeveloper().stream().map(MatchDTOMapper::toMatch).toList()
         );
@@ -32,10 +34,12 @@ public class UserDTOMapper {
                 user.getBio(),
                 user.getBirth(),
                 user.getEmail(),
-                user.getPassword(),
-                UserTypeDTOMapper.toUserTypeDTO(user.getUserType()),
-                AddressDTOMapper.toAddressDTO(user.getAddress()),
+                null,
+                UserTypeMapper.toUserTypeString(user.getUserType()),
+                user.getLatitude(),
+                user.getLongitude(),
                 user.getLikedUsers().stream().map(UserDTOMapper::toUserDTOWithoutLikesAndMatches).toList(),
+                user.getLikedByUsers().stream().map(UserDTOMapper::toUserDTOWithoutLikesAndMatches).toList(),
                 user.getMatchesAsClient().stream().map(MatchDTOMapper::toMatchDTO).toList(),
                 user.getMatchesAsDeveloper().stream().map(MatchDTOMapper::toMatchDTO).toList()
         );
@@ -50,8 +54,10 @@ public class UserDTOMapper {
                 userDTO.birth(),
                 userDTO.email(),
                 userDTO.password(),
-                UserTypeDTOMapper.toUserType(userDTO.userType()),
-                AddressDTOMapper.toAddress(userDTO.address()),
+                UserTypeMapper.toUserType(userDTO.userType()),
+                userDTO.latitude(),
+                userDTO.longitude(),
+                Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList()
@@ -66,9 +72,11 @@ public class UserDTOMapper {
                 user.getBio(),
                 user.getBirth(),
                 user.getEmail(),
-                user.getPassword(),
-                UserTypeDTOMapper.toUserTypeDTO(user.getUserType()),
-                AddressDTOMapper.toAddressDTO(user.getAddress()),
+                null,
+                UserTypeMapper.toUserTypeString(user.getUserType()),
+                user.getLatitude(),
+                user.getLongitude(),
+                Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList()
