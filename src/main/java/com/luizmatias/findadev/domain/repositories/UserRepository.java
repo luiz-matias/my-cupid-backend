@@ -45,6 +45,7 @@ public interface UserRepository {
      *
      * @param user the data to be updated
      * @return the updated user
+     * @throws ResourceNotFoundException in case a user with its id doesn't exist
      */
     User updateUserProfile(User user) throws ResourceNotFoundException;
 
@@ -53,6 +54,7 @@ public interface UserRepository {
      *
      * @param user the data to be updated
      * @return the updated user
+     * @throws ResourceNotFoundException in case a user with its id doesn't exist
      */
     User updateUserLikes(User user) throws ResourceNotFoundException;
 
@@ -60,7 +62,7 @@ public interface UserRepository {
      * deletes an user
      *
      * @param user the user to be deleted
-     * @throws ResourceNotFoundException in case a user doesn't exist
+     * @throws ResourceNotFoundException in case a user with its id doesn't exist
      */
     void deleteUser(User user) throws ResourceNotFoundException;
 
