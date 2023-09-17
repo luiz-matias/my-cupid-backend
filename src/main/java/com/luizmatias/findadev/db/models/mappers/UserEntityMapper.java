@@ -17,8 +17,10 @@ public class UserEntityMapper {
                 userEntity.getEmail(),
                 userEntity.getPassword(),
                 userEntity.getUserType(),
-                AddressEntityMapper.toAddress(userEntity.getAddressEntity()),
+                userEntity.getLatitude(),
+                userEntity.getLongitude(),
                 userEntity.getLikedUserEntities().stream().map(UserEntityMapper::toUserWithoutLikesAndMatches).toList(),
+                userEntity.getLikedByUserEntities().stream().map(UserEntityMapper::toUserWithoutLikesAndMatches).toList(),
                 userEntity.getMatchesAsClient().stream().map(MatchEntityMapper::toMatch).toList(),
                 userEntity.getMatchesAsDeveloper().stream().map(MatchEntityMapper::toMatch).toList()
         );
@@ -34,8 +36,10 @@ public class UserEntityMapper {
                 user.getEmail(),
                 user.getPassword(),
                 user.getUserType(),
-                AddressEntityMapper.toAddressEntity(user.getAddress()),
+                user.getLatitude(),
+                user.getLongitude(),
                 user.getLikedUsers().stream().map(UserEntityMapper::toUserEntityWithoutLikesAndMatches).toList(),
+                user.getLikedByUsers().stream().map(UserEntityMapper::toUserEntityWithoutLikesAndMatches).toList(),
                 user.getMatchesAsClient().stream().map(MatchEntityMapper::toMatchEntity).toList(),
                 user.getMatchesAsDeveloper().stream().map(MatchEntityMapper::toMatchEntity).toList()
         );
@@ -51,7 +55,9 @@ public class UserEntityMapper {
                 userEntity.getEmail(),
                 userEntity.getPassword(),
                 userEntity.getUserType(),
-                AddressEntityMapper.toAddress(userEntity.getAddressEntity()),
+                userEntity.getLatitude(),
+                userEntity.getLongitude(),
+                Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList()
@@ -68,7 +74,9 @@ public class UserEntityMapper {
                 user.getEmail(),
                 user.getPassword(),
                 user.getUserType(),
-                AddressEntityMapper.toAddressEntity(user.getAddress()),
+                user.getLatitude(),
+                user.getLongitude(),
+                Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList()

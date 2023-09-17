@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,16 +21,24 @@ public class UserEntity {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(nullable = false, length = 50)
     private String firstName;
+    @Column(nullable = false, length = 50)
     private String lastName;
+    @Column(nullable = false, length = 500)
     private String bio;
-    private LocalDate birth;
+    @Column(nullable = false)
+    private Date birth;
+    @Column(unique = true, nullable = false)
     private String email;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
     private UserType userType;
-    @OneToOne
-    @JoinColumn(name = "address_id")
-    private AddressEntity addressEntity;
+    @Column(nullable = false)
+    private Double latitude;
+    @Column(nullable = false)
+    private Double longitude;
     @ManyToMany
     @JoinTable(
             name = "likes",
@@ -38,9 +46,15 @@ public class UserEntity {
             inverseJoinColumns = @JoinColumn(name = "to_user_id")
     )
     private List<UserEntity> likedUserEntities;
-    @OneToMany(mappedBy = "clientUserEntity")
+    @ManyToMany
+    @JoinTable(
+            name = "likes",
+            joinColumns = @JoinColumn(name = "to_user_id"),
+            inverseJoinColumns = @JoinColumn(name = "from_user_id")
+    )
+    private List<UserEntity> likedByUserEntities;
+    @OneToMany(mappedBy = "clientUserEntity", cascade = CascadeType.ALL)
     private List<MatchEntity> matchesAsClient;
-    @OneToMany(mappedBy = "developerUserEntity")
+    @OneToMany(mappedBy = "developerUserEntity", cascade = CascadeType.ALL)
     private List<MatchEntity> matchesAsDeveloper;
-
 }

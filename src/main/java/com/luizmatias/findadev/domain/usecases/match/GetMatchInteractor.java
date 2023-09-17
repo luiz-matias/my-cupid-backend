@@ -1,6 +1,7 @@
 package com.luizmatias.findadev.domain.usecases.match;
 
 import com.luizmatias.findadev.domain.entities.Match;
+import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
 import com.luizmatias.findadev.domain.repositories.MatchRepository;
 
 import java.util.Optional;
@@ -13,7 +14,7 @@ public class GetMatchInteractor {
         this.matchRepository = matchRepository;
     }
 
-    Optional<Match> getMatch(Long id) {
+    public Match getMatch(Long id) throws ResourceNotFoundException {
         return matchRepository.getMatch(id);
     }
 

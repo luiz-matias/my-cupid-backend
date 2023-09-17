@@ -1,4 +1,4 @@
-package com.luizmatias.findadev.api.dtos;
+package com.luizmatias.findadev.api.dtos.responses;
 
 import java.util.Date;
 

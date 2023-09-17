@@ -1,6 +1,6 @@
-package com.luizmatias.findadev.api.dtos;
+package com.luizmatias.findadev.api.dtos.responses;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public record UserDTO(
@@ -8,12 +8,14 @@ public record UserDTO(
         String firstName,
         String lastName,
         String bio,
-        LocalDate birth,
+        Date birth,
         String email,
         String password,
-        UserTypeDTO userType,
-        AddressDTO address,
+        String userType,
+        Double latitude,
+        Double longitude,
         List<UserDTO> likedUsers,
+        List<UserDTO> likedByUsers,
         List<MatchDTO> matchesAsClient,
         List<MatchDTO> matchesAsDeveloper
 ) {
