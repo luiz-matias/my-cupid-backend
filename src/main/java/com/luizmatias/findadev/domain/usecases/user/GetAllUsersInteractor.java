@@ -13,7 +13,7 @@ public class GetAllUsersInteractor {
         this.userRepository = userRepository;
     }
 
-    List<User> getAllUsers() {
+    public List<User> getAllUsers() {
         return userRepository.getAllUsers();
     }
 

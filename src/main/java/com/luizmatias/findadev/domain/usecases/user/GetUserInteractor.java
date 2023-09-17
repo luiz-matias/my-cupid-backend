@@ -1,6 +1,7 @@
 package com.luizmatias.findadev.domain.usecases.user;
 
 import com.luizmatias.findadev.domain.entities.User;
+import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
 import com.luizmatias.findadev.domain.repositories.UserRepository;
 
 import java.util.Optional;
@@ -13,7 +14,7 @@ public class GetUserInteractor {
         this.userRepository = userRepository;
     }
 
-    Optional<User> getUser(Long id) {
+    public User getUser(Long id) throws ResourceNotFoundException {
         return userRepository.getUser(id);
     }
 
