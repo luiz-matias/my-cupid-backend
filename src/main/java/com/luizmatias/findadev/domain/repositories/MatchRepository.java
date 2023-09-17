@@ -1,8 +1,7 @@
 package com.luizmatias.findadev.domain.repositories;
 
 import com.luizmatias.findadev.domain.entities.Match;
-
-import java.util.Optional;
+import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
 
 public interface MatchRepository {
 
@@ -18,23 +17,26 @@ public interface MatchRepository {
      * Gets a specific match filtering by id
      *
      * @param id the id of the match
-     * @return an optional reference for the match in case a match with its id doesn't exist
+     * @return a reference for the match
+     * @throws ResourceNotFoundException in case the match doesn't exist
      */
-    Optional<Match> getMatch(Long id);
+    Match getMatch(Long id) throws ResourceNotFoundException;
 
     /**
      * updates the match and returns its own reference
      *
      * @param match the data to be updated
      * @return the updated match
+     * @throws ResourceNotFoundException in case a user involved in the match doesn't exist
      */
-    Match updateMatch(Match match);
+    Match updateMatch(Match match) throws ResourceNotFoundException;
 
     /**
      * deletes a match
      *
      * @param match the match to be deleted
+     * @throws ResourceNotFoundException in case a user involved in the match doesn't exist
      */
-    void deleteMatch(Match match);
+    void deleteMatch(Match match) throws ResourceNotFoundException;
 
 }

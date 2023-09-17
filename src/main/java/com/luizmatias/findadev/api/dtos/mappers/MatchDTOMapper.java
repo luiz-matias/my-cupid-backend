@@ -1,6 +1,6 @@
 package com.luizmatias.findadev.api.dtos.mappers;
 
-import com.luizmatias.findadev.api.dtos.MatchDTO;
+import com.luizmatias.findadev.api.dtos.responses.MatchDTO;
 import com.luizmatias.findadev.domain.entities.Match;
 
 public class MatchDTOMapper {

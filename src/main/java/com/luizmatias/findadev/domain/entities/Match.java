@@ -2,7 +2,7 @@ package com.luizmatias.findadev.domain.entities;
 
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -13,7 +13,7 @@ public class Match {
     private Long id;
     private User clientUser;
     private User developerUser;
-    private LocalDateTime matchedAt;
-    private LocalDateTime unmatchedAt;
+    private Date matchedAt;
+    private Date unmatchedAt;
 
 }
