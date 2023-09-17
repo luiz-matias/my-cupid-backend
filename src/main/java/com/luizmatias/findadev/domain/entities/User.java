@@ -1,15 +1,8 @@
 package com.luizmatias.findadev.domain.entities;
 
-import lombok.*;
-
 import java.util.Date;
 import java.util.List;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(of = "id")
 public class User {
     private Long id;
     private String firstName;
@@ -26,4 +19,135 @@ public class User {
     private List<Match> matchesAsClient;
     private List<Match> matchesAsDeveloper;
 
+    public User() {
+    }
+
+    public User(Long id, String firstName, String lastName, String bio, Date birth, String email, String password, UserType userType, Double latitude, Double longitude, List<User> likedUsers, List<User> likedByUsers, List<Match> matchesAsClient, List<Match> matchesAsDeveloper) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.bio = bio;
+        this.birth = birth;
+        this.email = email;
+        this.password = password;
+        this.userType = userType;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.likedUsers = likedUsers;
+        this.likedByUsers = likedByUsers;
+        this.matchesAsClient = matchesAsClient;
+        this.matchesAsDeveloper = matchesAsDeveloper;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public Date getBirth() {
+        return birth;
+    }
+
+    public void setBirth(Date birth) {
+        this.birth = birth;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public List<User> getLikedUsers() {
+        return likedUsers;
+    }
+
+    public void setLikedUsers(List<User> likedUsers) {
+        this.likedUsers = likedUsers;
+    }
+
+    public List<User> getLikedByUsers() {
+        return likedByUsers;
+    }
+
+    public void setLikedByUsers(List<User> likedByUsers) {
+        this.likedByUsers = likedByUsers;
+    }
+
+    public List<Match> getMatchesAsClient() {
+        return matchesAsClient;
+    }
+
+    public void setMatchesAsClient(List<Match> matchesAsClient) {
+        this.matchesAsClient = matchesAsClient;
+    }
+
+    public List<Match> getMatchesAsDeveloper() {
+        return matchesAsDeveloper;
+    }
+
+    public void setMatchesAsDeveloper(List<Match> matchesAsDeveloper) {
+        this.matchesAsDeveloper = matchesAsDeveloper;
+    }
 }
