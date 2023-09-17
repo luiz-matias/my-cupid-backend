@@ -2,7 +2,7 @@ package com.luizmatias.findadev.domain.entities;
 
 import lombok.*;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -15,12 +15,14 @@ public class User {
     private String firstName;
     private String lastName;
     private String bio;
-    private LocalDate birth;
+    private Date birth;
     private String email;
     private String password;
     private UserType userType;
-    private Address address;
+    private Double latitude;
+    private Double longitude;
     private List<User> likedUsers;
+    private List<User> likedByUsers;
     private List<Match> matchesAsClient;
     private List<Match> matchesAsDeveloper;
 
