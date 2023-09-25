@@ -41,6 +41,7 @@ public record UpdateUserDTO(
                 email,
                 null,
                 null,
+                null,
                 latitude,
                 longitude,
                 Collections.emptyList(),

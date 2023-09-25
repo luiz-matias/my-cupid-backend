@@ -1,7 +1,9 @@
 package com.luizmatias.findadev.api.dtos.requests;
 
+import com.luizmatias.findadev.api.dtos.mappers.UserRoleMapper;
 import com.luizmatias.findadev.api.dtos.mappers.UserTypeMapper;
 import com.luizmatias.findadev.api.validators.StrongPassword;
+import com.luizmatias.findadev.api.validators.UserRole;
 import com.luizmatias.findadev.api.validators.UserType;
 import com.luizmatias.findadev.domain.entities.User;
 import jakarta.validation.constraints.*;
@@ -33,6 +35,9 @@ public record RegisterUserDTO(
         @UserType
         String userType,
         @NotNull
+        @UserRole
+        String userRole,
+        @NotNull
         @Min(-90)
         @Max(90)
         Double latitude,
@@ -51,6 +56,7 @@ public record RegisterUserDTO(
                 email,
                 password,
                 UserTypeMapper.toUserType(userType),
+                UserRoleMapper.toUserRole(userRole),
                 latitude,
                 longitude,
                 Collections.emptyList(),
