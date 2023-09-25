@@ -7,7 +7,7 @@ import java.util.Objects;
 public class UserTypeMapper {
 
     public static UserType toUserType(String userType) {
-        if (Objects.equals(userType, USER_TYPE_CLIENT)) {
+        if (Objects.equals(userType, UserType.CLIENT.getType())) {
             return UserType.CLIENT;
         } else {
             return UserType.DEVELOPER;
@@ -15,13 +15,7 @@ public class UserTypeMapper {
     }
 
     public static String toUserTypeString(UserType userType) {
-        return switch (userType) {
-            case CLIENT -> USER_TYPE_CLIENT;
-            case DEVELOPER -> USER_TYPE_DEVELOPER;
-        };
+        return userType.getType();
     }
-
-    public static final String USER_TYPE_CLIENT = "CLIENT";
-    public static final String USER_TYPE_DEVELOPER = "DEVELOPER";
 
 }

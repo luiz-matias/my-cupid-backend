@@ -2,6 +2,7 @@ package com.luizmatias.findadev.config;
 
 import com.luizmatias.findadev.db.repositories.UserDatabaseRepository;
 import com.luizmatias.findadev.db.repositories.UserJpaRepository;
+import com.luizmatias.findadev.domain.repositories.PasswordEncoder;
 import com.luizmatias.findadev.domain.repositories.UserRepository;
 import com.luizmatias.findadev.domain.usecases.user.*;
 import org.springframework.context.annotation.Bean;
@@ -11,8 +12,8 @@ import org.springframework.context.annotation.Configuration;
 public class UserConfig {
 
     @Bean
-    CreateUserInteractor createUserInteractor(UserRepository userRepository) {
-        return new CreateUserInteractor(userRepository);
+    CreateUserInteractor createUserInteractor(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        return new CreateUserInteractor(userRepository, passwordEncoder);
     }
 
     @Bean

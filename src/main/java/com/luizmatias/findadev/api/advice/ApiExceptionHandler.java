@@ -1,10 +1,7 @@
 package com.luizmatias.findadev.api.advice;
 
 import com.luizmatias.findadev.api.dtos.responses.ApiErrorResponseDTO;
-import com.luizmatias.findadev.domain.exceptions.LikeOnSameUserException;
-import com.luizmatias.findadev.domain.exceptions.LikeOnSameUserTypeException;
-import com.luizmatias.findadev.domain.exceptions.ResourceAlreadyExistsException;
-import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
+import com.luizmatias.findadev.domain.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -38,6 +35,16 @@ public class ApiExceptionHandler {
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     @ExceptionHandler(ResourceNotFoundException.class)
     public ApiErrorResponseDTO handleResourceNotFound(ResourceNotFoundException ex) {
+        return new ApiErrorResponseDTO(
+                new Date(),
+                HttpStatus.NOT_FOUND.value(),
+                ex.getMessage()
+        );
+    }
+
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(LoginFailedException.class)
+    public ApiErrorResponseDTO handleLoginFailed(LoginFailedException ex) {
         return new ApiErrorResponseDTO(
                 new Date(),
                 HttpStatus.NOT_FOUND.value(),

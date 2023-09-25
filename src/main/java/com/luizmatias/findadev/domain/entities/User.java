@@ -12,6 +12,7 @@ public class User {
     private String email;
     private String password;
     private UserType userType;
+    private UserRole userRole;
     private Double latitude;
     private Double longitude;
     private List<User> likedUsers;
@@ -22,7 +23,7 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String firstName, String lastName, String bio, Date birth, String email, String password, UserType userType, Double latitude, Double longitude, List<User> likedUsers, List<User> likedByUsers, List<Match> matchesAsClient, List<Match> matchesAsDeveloper) {
+    public User(Long id, String firstName, String lastName, String bio, Date birth, String email, String password, UserType userType, UserRole userRole, Double latitude, Double longitude, List<User> likedUsers, List<User> likedByUsers, List<Match> matchesAsClient, List<Match> matchesAsDeveloper) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -31,6 +32,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.userType = userType;
+        this.userRole = userRole;
         this.latitude = latitude;
         this.longitude = longitude;
         this.likedUsers = likedUsers;
@@ -101,6 +103,14 @@ public class User {
 
     public void setUserType(UserType userType) {
         this.userType = userType;
+    }
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 
     public Double getLatitude() {

@@ -12,6 +12,7 @@ public record UserDTO(
         String email,
         String password,
         String userType,
+        String userRole,
         Double latitude,
         Double longitude,
         List<UserDTO> likedUsers,
