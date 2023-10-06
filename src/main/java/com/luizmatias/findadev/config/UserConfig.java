@@ -40,4 +40,5 @@ public class UserConfig {
     UserRepository userRepository(UserJpaRepository userJpaRepository) {
         return new UserDatabaseRepository(userJpaRepository);
     }
+
 }
