@@ -59,6 +59,7 @@ public record RegisterUserDTO(
                 UserRoleMapper.toUserRole(userRole),
                 latitude,
                 longitude,
+                null,
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
