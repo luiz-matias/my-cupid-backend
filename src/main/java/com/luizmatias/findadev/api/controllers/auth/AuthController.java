@@ -4,14 +4,17 @@ import com.luizmatias.findadev.api.controllers.user.UserController;
 import com.luizmatias.findadev.api.dtos.mappers.UserDTOMapper;
 import com.luizmatias.findadev.api.dtos.requests.LoginUserDTO;
 import com.luizmatias.findadev.api.dtos.requests.RegisterUserDTO;
+import com.luizmatias.findadev.api.dtos.requests.RequestResetPasswordDTO;
+import com.luizmatias.findadev.api.dtos.requests.ResetPasswordDTO;
 import com.luizmatias.findadev.api.dtos.responses.TokenResponseDTO;
 import com.luizmatias.findadev.api.dtos.responses.UserDTO;
 import com.luizmatias.findadev.api.security.TokenService;
 import com.luizmatias.findadev.db.models.UserEntity;
 import com.luizmatias.findadev.domain.entities.User;
-import com.luizmatias.findadev.domain.exceptions.LoginFailedException;
-import com.luizmatias.findadev.domain.exceptions.ResourceAlreadyExistsException;
+import com.luizmatias.findadev.domain.exceptions.*;
 import com.luizmatias.findadev.domain.usecases.user.CreateUserInteractor;
+import com.luizmatias.findadev.domain.usecases.auth.RequestResetPasswordInteractor;
+import com.luizmatias.findadev.domain.usecases.auth.ResetPasswordInteractor;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,11 +42,15 @@ public class AuthController {
     private final TokenService tokenService;
 
     private final CreateUserInteractor createUserInteractor;
+    private final ResetPasswordInteractor resetPasswordInteractor;
+    private final RequestResetPasswordInteractor requestResetPasswordInteractor;
 
-    public AuthController(AuthenticationManager authenticationManager, TokenService tokenService, CreateUserInteractor createUserInteractor) {
+    public AuthController(AuthenticationManager authenticationManager, TokenService tokenService, CreateUserInteractor createUserInteractor, ResetPasswordInteractor resetPasswordInteractor, RequestResetPasswordInteractor requestResetPasswordInteractor) {
         this.authenticationManager = authenticationManager;
         this.tokenService = tokenService;
         this.createUserInteractor = createUserInteractor;
+        this.resetPasswordInteractor = resetPasswordInteractor;
+        this.requestResetPasswordInteractor = requestResetPasswordInteractor;
     }
 
     @PostMapping(path = "/login")
@@ -67,6 +74,22 @@ public class AuthController {
         user = createUserInteractor.createUser(user);
         URI uri = UriComponentsBuilder.newInstance().path("{path}/{id}").buildAndExpand(UserController.USERS_PATH, user.getId()).toUri();
         return ResponseEntity.created(uri).body(UserDTOMapper.toUserDTO(user));
+    }
+
+    @PostMapping(path = "/reset-password")
+    public ResponseEntity<TokenResponseDTO> resetPassword(@RequestBody @Valid ResetPasswordDTO resetPasswordDTO) throws FailedToSendEmailException {
+        try {
+            resetPasswordInteractor.resetPassword(resetPasswordDTO.email());
+        } catch (ResourceNotFoundException e) {
+            System.out.println("User not found, skipping password reset.");
+        }
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping(path = "/request-reset-password")
+    public ResponseEntity<UserDTO> requestResetPassword(@RequestBody @Valid RequestResetPasswordDTO requestResetPasswordDTO) throws InvalidTokenException, ResourceNotFoundException {
+        User user = requestResetPasswordInteractor.requestResetPassword(requestResetPasswordDTO.token(), requestResetPasswordDTO.password());
+        return ResponseEntity.ok(UserDTOMapper.toUserDTO(user));
     }
 
 }

@@ -72,10 +72,10 @@ Spring Boot is an opinionated extension from Spring that allows us to develop ba
   - [X] Readme About the Project
   - [X] List of epics and stories
   - [X] Environment Preparation
-- [ ] Authentication
+- [X] Authentication
   - [X] Login
   - [X] Registration
-  - [ ] Password Recovery
+  - [X] Password Recovery
 - [ ] Account Management
   - [X] Edit Profile
   - [ ] Change Password
@@ -94,4 +94,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 # Contact
 
-Luiz Matias - [LinkedIn](https://www.linkedin.com/in/luizmatias1999/) - contact@luizmatias.com
+Luiz Matias - [LinkedIn](https://www.linkedin.com/in/luizmatiasdev/) - contact@luizmatias.com

@@ -19,11 +19,12 @@ public class User {
     private List<User> likedByUsers;
     private List<Match> matchesAsClient;
     private List<Match> matchesAsDeveloper;
+    private List<PasswordToken> passwordTokens;
 
     public User() {
     }
 
-    public User(Long id, String firstName, String lastName, String bio, Date birth, String email, String password, UserType userType, UserRole userRole, Double latitude, Double longitude, List<User> likedUsers, List<User> likedByUsers, List<Match> matchesAsClient, List<Match> matchesAsDeveloper) {
+    public User(Long id, String firstName, String lastName, String bio, Date birth, String email, String password, UserType userType, UserRole userRole, Double latitude, Double longitude, List<User> likedUsers, List<User> likedByUsers, List<Match> matchesAsClient, List<Match> matchesAsDeveloper, List<PasswordToken> passwordTokens) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -39,6 +40,7 @@ public class User {
         this.likedByUsers = likedByUsers;
         this.matchesAsClient = matchesAsClient;
         this.matchesAsDeveloper = matchesAsDeveloper;
+        this.passwordTokens = passwordTokens;
     }
 
     public Long getId() {
@@ -159,5 +161,13 @@ public class User {
 
     public void setMatchesAsDeveloper(List<Match> matchesAsDeveloper) {
         this.matchesAsDeveloper = matchesAsDeveloper;
+    }
+
+    public List<PasswordToken> getPasswordTokens() {
+        return passwordTokens;
+    }
+
+    public void setPasswordTokens(List<PasswordToken> passwordTokens) {
+        this.passwordTokens = passwordTokens;
     }
 }

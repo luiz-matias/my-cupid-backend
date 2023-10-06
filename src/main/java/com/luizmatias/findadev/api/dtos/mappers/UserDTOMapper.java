@@ -23,7 +23,8 @@ public class UserDTOMapper {
                 userDTO.likedUsers().stream().map(UserDTOMapper::toUserWithoutLikesAndMatches).toList(),
                 userDTO.likedByUsers().stream().map(UserDTOMapper::toUserWithoutLikesAndMatches).toList(),
                 userDTO.matchesAsClient().stream().map(MatchDTOMapper::toMatch).toList(),
-                userDTO.matchesAsDeveloper().stream().map(MatchDTOMapper::toMatch).toList()
+                userDTO.matchesAsDeveloper().stream().map(MatchDTOMapper::toMatch).toList(),
+                Collections.emptyList()
         );
     }
 
@@ -60,6 +61,7 @@ public class UserDTOMapper {
                 UserRoleMapper.toUserRole(userDTO.userRole()),
                 userDTO.latitude(),
                 userDTO.longitude(),
+                Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),

@@ -65,6 +65,8 @@ public class UserEntity implements UserDetails {
     private List<MatchEntity> matchesAsClient;
     @OneToMany(mappedBy = "developerUserEntity", cascade = CascadeType.ALL)
     private List<MatchEntity> matchesAsDeveloper;
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
+    private List<PasswordTokenEntity> passwordTokenEntities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -59,6 +59,16 @@ public interface UserRepository {
     User updateUserLikes(User user) throws ResourceNotFoundException;
 
     /**
+     * updates the user password and returns its own reference
+     *
+     * @param id       id of the user
+     * @param password the updated password
+     * @return the updated user
+     * @throws ResourceNotFoundException in case a user with its id doesn't exist
+     */
+    User updateUserPassword(Long id, String password) throws ResourceNotFoundException;
+
+    /**
      * deletes an user
      *
      * @param user the user to be deleted
