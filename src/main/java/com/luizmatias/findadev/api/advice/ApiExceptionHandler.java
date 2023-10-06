@@ -32,6 +32,26 @@ public class ApiExceptionHandler {
         );
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(InvalidTokenException.class)
+    public ApiErrorResponseDTO handleInvalidToken(InvalidTokenException ex) {
+        return new ApiErrorResponseDTO(
+                new Date(),
+                HttpStatus.BAD_REQUEST.value(),
+                ex.getMessage()
+        );
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(FailedToSendEmailException.class)
+    public ApiErrorResponseDTO handleFailedToSendEmail(FailedToSendEmailException ex) {
+        return new ApiErrorResponseDTO(
+                new Date(),
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                ex.getMessage()
+        );
+    }
+
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     @ExceptionHandler(ResourceNotFoundException.class)
     public ApiErrorResponseDTO handleResourceNotFound(ResourceNotFoundException ex) {
