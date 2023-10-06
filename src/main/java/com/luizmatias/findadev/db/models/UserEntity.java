@@ -47,6 +47,8 @@ public class UserEntity implements UserDetails {
     private Double latitude;
     @Column(nullable = false)
     private Double longitude;
+    @Column(nullable = false)
+    private Boolean isEmailVerified;
     @ManyToMany
     @JoinTable(
             name = "likes",
@@ -66,7 +68,7 @@ public class UserEntity implements UserDetails {
     @OneToMany(mappedBy = "developerUserEntity", cascade = CascadeType.ALL)
     private List<MatchEntity> matchesAsDeveloper;
     @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
-    private List<PasswordTokenEntity> passwordTokenEntities;
+    private List<UserTemporaryTokenEntity> passwordTokenEntities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -2,8 +2,12 @@ package com.luizmatias.findadev.config;
 
 import com.luizmatias.findadev.db.repositories.UserDatabaseRepository;
 import com.luizmatias.findadev.db.repositories.UserJpaRepository;
+import com.luizmatias.findadev.domain.repositories.EmailSenderRepository;
 import com.luizmatias.findadev.domain.repositories.PasswordEncoder;
 import com.luizmatias.findadev.domain.repositories.UserRepository;
+import com.luizmatias.findadev.domain.usecases.auth.ActivateUserInteractor;
+import com.luizmatias.findadev.domain.usecases.auth.CreateUserTemporaryTokenInteractor;
+import com.luizmatias.findadev.domain.usecases.auth.VerifyUserTemporaryTokenInteractor;
 import com.luizmatias.findadev.domain.usecases.user.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +16,13 @@ import org.springframework.context.annotation.Configuration;
 public class UserConfig {
 
     @Bean
-    CreateUserInteractor createUserInteractor(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        return new CreateUserInteractor(userRepository, passwordEncoder);
+    CreateUserInteractor createUserInteractor(UserRepository userRepository, PasswordEncoder passwordEncoder, CreateUserTemporaryTokenInteractor createUserTemporaryTokenInteractor, EmailSenderRepository emailSenderRepository) {
+        return new CreateUserInteractor(userRepository, passwordEncoder, createUserTemporaryTokenInteractor, emailSenderRepository);
+    }
+
+    @Bean
+    ActivateUserInteractor activateUserInteractor(UserRepository userRepository, VerifyUserTemporaryTokenInteractor verifyUserTemporaryTokenInteractor) {
+        return new ActivateUserInteractor(userRepository, verifyUserTemporaryTokenInteractor);
     }
 
     @Bean

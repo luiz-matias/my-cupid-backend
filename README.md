@@ -74,6 +74,7 @@ Spring Boot is an opinionated extension from Spring that allows us to develop ba
   - [X] Environment Preparation
 - [X] Authentication
   - [X] Login
+  - [X] Email activation
   - [X] Registration
   - [X] Password Recovery
 - [ ] Account Management

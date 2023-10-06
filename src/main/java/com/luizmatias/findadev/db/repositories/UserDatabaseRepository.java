@@ -22,6 +22,7 @@ public class UserDatabaseRepository implements UserRepository {
     @Override
     public User createUser(User user) {
         UserEntity userEntity = UserEntityMapper.toUserEntity(user);
+        userEntity.setIsEmailVerified(false);
         return UserEntityMapper.toUser(userJpaRepository.save(userEntity));
     }
 
@@ -74,10 +75,6 @@ public class UserDatabaseRepository implements UserRepository {
             userEntity.setBirth(userEntityUpdated.getBirth());
         }
 
-        if (userEntityUpdated.getEmail() != null) {
-            userEntity.setEmail(userEntityUpdated.getEmail());
-        }
-
         if (userEntityUpdated.getLatitude() != null) {
             userEntity.setLatitude(userEntityUpdated.getLatitude());
         }
@@ -85,6 +82,20 @@ public class UserDatabaseRepository implements UserRepository {
         if (userEntityUpdated.getLongitude() != null) {
             userEntity.setLongitude(userEntityUpdated.getLongitude());
         }
+
+        return UserEntityMapper.toUser(userJpaRepository.save(userEntity));
+    }
+
+    @Override
+    public User verifyUserEmail(User user) throws ResourceNotFoundException {
+        Optional<UserEntity> existingUserOptional = userJpaRepository.findById(user.getId());
+
+        if (existingUserOptional.isEmpty()) {
+            throw new ResourceNotFoundException("Could not find an user with id = " + user.getId());
+        }
+
+        UserEntity userEntity = existingUserOptional.get();
+        userEntity.setIsEmailVerified(true);
 
         return UserEntityMapper.toUser(userJpaRepository.save(userEntity));
     }

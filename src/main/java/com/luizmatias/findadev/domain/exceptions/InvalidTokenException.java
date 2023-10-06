@@ -1,7 +1,7 @@
 package com.luizmatias.findadev.domain.exceptions;
 
 /**
- * Thrown when an token is invalid
+ * Thrown when a token is invalid
  */
 public class InvalidTokenException extends Exception {
 

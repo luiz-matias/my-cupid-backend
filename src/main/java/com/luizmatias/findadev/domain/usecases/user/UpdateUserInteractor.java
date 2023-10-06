@@ -31,10 +31,6 @@ public class UpdateUserInteractor {
             existingUser.setBirth(user.getBirth());
         }
 
-        if (user.getEmail() != null) {
-            existingUser.setEmail(user.getEmail());
-        }
-
         if (user.getLatitude() != null) {
             existingUser.setLatitude(user.getLatitude());
         }

@@ -2,7 +2,10 @@ package com.luizmatias.findadev.api.dtos.requests;
 
 import com.luizmatias.findadev.api.validators.NullOrNotBlank;
 import com.luizmatias.findadev.domain.entities.User;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Collections;
@@ -21,9 +24,6 @@ public record UpdateUserDTO(
         @Past
         @DateTimeFormat(pattern = "yyyy-MM-dd")
         Date birth,
-        @NullOrNotBlank
-        @Email
-        String email,
         @Min(-90)
         @Max(90)
         Double latitude,
@@ -38,12 +38,13 @@ public record UpdateUserDTO(
                 lastName,
                 bio,
                 birth,
-                email,
+                null,
                 null,
                 null,
                 null,
                 latitude,
                 longitude,
+                null,
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
