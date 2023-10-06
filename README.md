@@ -94,4 +94,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 # Contact
 
-Luiz Matias - [LinkedIn](https://www.linkedin.com/in/luizmatias1999/) - contact@luizmatias.com
+Luiz Matias - [LinkedIn](https://www.linkedin.com/in/luizmatiasdev/) - contact@luizmatias.com
