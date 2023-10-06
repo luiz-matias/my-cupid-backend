@@ -107,6 +107,20 @@ public class UserDatabaseRepository implements UserRepository {
     }
 
     @Override
+    public User updateUserPassword(Long id, String password) throws ResourceNotFoundException {
+        Optional<UserEntity> existingUserOptional = userJpaRepository.findById(id);
+
+        if (existingUserOptional.isEmpty()) {
+            throw new ResourceNotFoundException("Could not find an user with id = " + id);
+        }
+
+        UserEntity userEntity = existingUserOptional.get();
+        userEntity.setPassword(password);
+
+        return UserEntityMapper.toUser(userJpaRepository.save(userEntity));
+    }
+
+    @Override
     public void deleteUser(User user) throws ResourceNotFoundException {
         if (!userJpaRepository.existsById(user.getId())) {
             throw new ResourceNotFoundException("Could not find an user with id = " + user.getId());
