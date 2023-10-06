@@ -15,16 +15,17 @@ public class User {
     private UserRole userRole;
     private Double latitude;
     private Double longitude;
+    private Boolean isEmailVerified;
     private List<User> likedUsers;
     private List<User> likedByUsers;
     private List<Match> matchesAsClient;
     private List<Match> matchesAsDeveloper;
-    private List<PasswordToken> passwordTokens;
+    private List<UserTemporaryToken> userTemporaryTokens;
 
     public User() {
     }
 
-    public User(Long id, String firstName, String lastName, String bio, Date birth, String email, String password, UserType userType, UserRole userRole, Double latitude, Double longitude, List<User> likedUsers, List<User> likedByUsers, List<Match> matchesAsClient, List<Match> matchesAsDeveloper, List<PasswordToken> passwordTokens) {
+    public User(Long id, String firstName, String lastName, String bio, Date birth, String email, String password, UserType userType, UserRole userRole, Double latitude, Double longitude, Boolean isEmailVerified, List<User> likedUsers, List<User> likedByUsers, List<Match> matchesAsClient, List<Match> matchesAsDeveloper, List<UserTemporaryToken> userTemporaryTokens) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,11 +37,12 @@ public class User {
         this.userRole = userRole;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.isEmailVerified = isEmailVerified;
         this.likedUsers = likedUsers;
         this.likedByUsers = likedByUsers;
         this.matchesAsClient = matchesAsClient;
         this.matchesAsDeveloper = matchesAsDeveloper;
-        this.passwordTokens = passwordTokens;
+        this.userTemporaryTokens = userTemporaryTokens;
     }
 
     public Long getId() {
@@ -131,6 +133,14 @@ public class User {
         this.longitude = longitude;
     }
 
+    public Boolean isEmailVerified() {
+        return isEmailVerified;
+    }
+
+    public void setEmailVerified(Boolean emailVerified) {
+        isEmailVerified = emailVerified;
+    }
+
     public List<User> getLikedUsers() {
         return likedUsers;
     }
@@ -163,11 +173,11 @@ public class User {
         this.matchesAsDeveloper = matchesAsDeveloper;
     }
 
-    public List<PasswordToken> getPasswordTokens() {
-        return passwordTokens;
+    public List<UserTemporaryToken> getUserTemporaryTokens() {
+        return userTemporaryTokens;
     }
 
-    public void setPasswordTokens(List<PasswordToken> passwordTokens) {
-        this.passwordTokens = passwordTokens;
+    public void setUserTemporaryTokens(List<UserTemporaryToken> userTemporaryTokens) {
+        this.userTemporaryTokens = userTemporaryTokens;
     }
 }

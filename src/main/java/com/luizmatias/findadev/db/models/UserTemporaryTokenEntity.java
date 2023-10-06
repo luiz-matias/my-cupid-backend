@@ -9,12 +9,12 @@ import lombok.Setter;
 import java.util.Date;
 
 @Entity
-@Table(name = "password_tokens")
+@Table(name = "user_temporary_tokens")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PasswordTokenEntity {
+public class UserTemporaryTokenEntity {
 
     @Id
     @GeneratedValue
