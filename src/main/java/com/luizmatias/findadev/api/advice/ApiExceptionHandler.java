@@ -92,4 +92,14 @@ public class ApiExceptionHandler {
         );
     }
 
+    @ResponseStatus(value = HttpStatus.CONFLICT)
+    @ExceptionHandler(UserNotInChatException.class)
+    public ApiErrorResponseDTO handleUserNotInChat(UserNotInChatException ex) {
+        return new ApiErrorResponseDTO(
+                new Date(),
+                HttpStatus.CONFLICT.value(),
+                ex.getMessage()
+        );
+    }
+
 }
