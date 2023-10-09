@@ -1,10 +1,13 @@
 package com.luizmatias.findadev.api.controllers.user;
 
+import com.luizmatias.findadev.api.dtos.mappers.ChatDTOMapper;
 import com.luizmatias.findadev.api.dtos.mappers.UserDTOMapper;
 import com.luizmatias.findadev.api.dtos.requests.UpdateUserDTO;
+import com.luizmatias.findadev.api.dtos.responses.ChatDTO;
 import com.luizmatias.findadev.api.dtos.responses.UserDTO;
 import com.luizmatias.findadev.domain.entities.User;
 import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
+import com.luizmatias.findadev.domain.usecases.chat.GetChatsInteractor;
 import com.luizmatias.findadev.domain.usecases.user.DeleteUserInteractor;
 import com.luizmatias.findadev.domain.usecases.user.GetAllUsersInteractor;
 import com.luizmatias.findadev.domain.usecases.user.GetUserInteractor;
@@ -14,6 +17,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,21 +29,23 @@ public class UserController {
 
     public static final String USERS_PATH = "/users";
 
-    final GetAllUsersInteractor getAllUsersInteractor;
-    final GetUserInteractor getUserInteractor;
-    final UpdateUserInteractor updateUserInteractor;
-    final DeleteUserInteractor deleteUserInteractor;
+    private final GetAllUsersInteractor getAllUsersInteractor;
+    private final GetUserInteractor getUserInteractor;
+    private final UpdateUserInteractor updateUserInteractor;
+    private final DeleteUserInteractor deleteUserInteractor;
+    private final GetChatsInteractor getChatsInteractor;
 
     public UserController(
             GetAllUsersInteractor getAllUsersInteractor,
             GetUserInteractor getUserInteractor,
             UpdateUserInteractor updateUserInteractor,
-            DeleteUserInteractor deleteUserInteractor
-    ) {
+            DeleteUserInteractor deleteUserInteractor,
+            GetChatsInteractor getChatsInteractor) {
         this.getAllUsersInteractor = getAllUsersInteractor;
         this.getUserInteractor = getUserInteractor;
         this.updateUserInteractor = updateUserInteractor;
         this.deleteUserInteractor = deleteUserInteractor;
+        this.getChatsInteractor = getChatsInteractor;
     }
 
     @GetMapping(path = {"/", ""})
@@ -68,6 +74,11 @@ public class UserController {
         User user = getUserInteractor.getUser(id);
         deleteUserInteractor.deleteUser(user);
         return ResponseEntity.ok(UserDTOMapper.toUserDTO(user));
+    }
+
+    @GetMapping(path = "/{id}/chats")
+    public ResponseEntity<List<ChatDTO>> getUserChatsById(@PathVariable("id") @NotNull @Range(min = 1) Long id) throws ResourceNotFoundException {
+        return ResponseEntity.ok(getChatsInteractor.getChats(id).stream().map(ChatDTOMapper::toChatDTO).toList());
     }
 
 }

@@ -3,8 +3,6 @@ package com.luizmatias.findadev.api.dtos.mappers;
 import com.luizmatias.findadev.api.dtos.responses.UserDTO;
 import com.luizmatias.findadev.domain.entities.User;
 
-import java.util.Collections;
-
 public class UserDTOMapper {
 
     public static User toUser(UserDTO userDTO) {
@@ -25,7 +23,7 @@ public class UserDTOMapper {
                 userDTO.likedByUsers().stream().map(UserDTOMapper::toUserWithoutLikesAndMatches).toList(),
                 userDTO.matchesAsClient().stream().map(MatchDTOMapper::toMatch).toList(),
                 userDTO.matchesAsDeveloper().stream().map(MatchDTOMapper::toMatch).toList(),
-                Collections.emptyList()
+                null
         );
     }
 
@@ -63,11 +61,11 @@ public class UserDTOMapper {
                 userDTO.latitude(),
                 userDTO.longitude(),
                 null,
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList()
+                null,
+                null,
+                null,
+                null,
+                null
         );
     }
 
@@ -84,10 +82,10 @@ public class UserDTOMapper {
                 UserRoleMapper.toUserRoleString(user.getUserRole()),
                 user.getLatitude(),
                 user.getLongitude(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList(),
-                Collections.emptyList()
+                null,
+                null,
+                null,
+                null
         );
     }
 

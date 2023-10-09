@@ -3,6 +3,7 @@ package com.luizmatias.findadev.config;
 import com.luizmatias.findadev.db.repositories.MatchDatabaseRepository;
 import com.luizmatias.findadev.db.repositories.MatchJpaRepository;
 import com.luizmatias.findadev.domain.repositories.MatchRepository;
+import com.luizmatias.findadev.domain.usecases.chat.CreateChatInteractor;
 import com.luizmatias.findadev.domain.usecases.like.RemoveLikeInteractor;
 import com.luizmatias.findadev.domain.usecases.match.CreateMatchInteractor;
 import com.luizmatias.findadev.domain.usecases.match.DeleteMatchInteractor;
@@ -15,8 +16,8 @@ import org.springframework.context.annotation.Configuration;
 public class MatchConfig {
 
     @Bean
-    CreateMatchInteractor createMatchInteractor(MatchRepository matchRepository, RemoveLikeInteractor removeLikeInteractor) {
-        return new CreateMatchInteractor(matchRepository, removeLikeInteractor);
+    CreateMatchInteractor createMatchInteractor(MatchRepository matchRepository, RemoveLikeInteractor removeLikeInteractor, CreateChatInteractor createChatInteractor) {
+        return new CreateMatchInteractor(matchRepository, removeLikeInteractor, createChatInteractor);
     }
 
     @Bean
