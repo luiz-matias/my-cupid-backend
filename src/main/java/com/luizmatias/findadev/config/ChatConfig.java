@@ -4,6 +4,7 @@ import com.luizmatias.findadev.db.repositories.ChatDatabaseRepository;
 import com.luizmatias.findadev.db.repositories.ChatJpaRepository;
 import com.luizmatias.findadev.db.repositories.MessageJpaRepository;
 import com.luizmatias.findadev.domain.repositories.ChatRepository;
+import com.luizmatias.findadev.domain.repositories.UserRepository;
 import com.luizmatias.findadev.domain.usecases.chat.CreateChatInteractor;
 import com.luizmatias.findadev.domain.usecases.chat.SendMessageInteractor;
 import org.springframework.context.annotation.Bean;
@@ -23,8 +24,8 @@ public class ChatConfig {
     }
 
     @Bean
-    SendMessageInteractor sendMessageInteractor(ChatRepository chatRepository) {
-        return new SendMessageInteractor(chatRepository);
+    SendMessageInteractor sendMessageInteractor(ChatRepository chatRepository, UserRepository userRepository) {
+        return new SendMessageInteractor(chatRepository, userRepository);
     }
 
 }
