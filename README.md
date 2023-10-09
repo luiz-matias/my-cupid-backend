@@ -35,9 +35,6 @@ As a user, I want to be able to change my password, so I can protect my account 
 ### Delete Account
 As a user, I want to be able to delete my account, so I can remove all my sensitive data from the platform.
 
-### Logout
-As a user, I want to be able to logout from the application, so I can login with another account.
-
 ## Finding and Matching Users
 
 ### List of Devs
@@ -53,6 +50,11 @@ As a user, when I give a like to another user and they like me as well, I want t
 
 ### Chat between Devs and Clients
 As a user, I want to chat with another user about the project we will implement.
+
+## Admin Management
+
+### List users
+As an admin, I want to fetch a list of users of my platform.
 ___
 # Main Tools
 
