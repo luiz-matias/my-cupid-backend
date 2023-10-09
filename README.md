@@ -85,8 +85,8 @@ Spring Boot is an opinionated extension from Spring that allows us to develop ba
   - [ ] List of Devs
   - [ ] List of Clients
   - [X] Match
-- [ ] Messaging
-  - [ ] Chat between Devs and Clients
+- [X] Messaging
+  - [X] Chat between Devs and Clients
 
 # License
 
