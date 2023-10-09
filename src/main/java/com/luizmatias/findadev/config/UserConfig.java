@@ -50,4 +50,19 @@ public class UserConfig {
         return new UserDatabaseRepository(userJpaRepository);
     }
 
+    @Bean
+    ChangePasswordInteractor changePasswordInteractor(CreateUserTemporaryTokenInteractor createUserTemporaryTokenInteractor, EmailSenderRepository emailSenderRepository, PasswordEncoder passwordEncoder) {
+        return new ChangePasswordInteractor(createUserTemporaryTokenInteractor, emailSenderRepository, passwordEncoder);
+    }
+
+    @Bean
+    ConfirmChangePasswordInteractor confirmChangePasswordInteractor(VerifyUserTemporaryTokenInteractor verifyUserTemporaryTokenInteractor, ChangeUserPasswordInteractor changeUserPasswordInteractor) {
+        return new ConfirmChangePasswordInteractor(verifyUserTemporaryTokenInteractor, changeUserPasswordInteractor);
+    }
+
+    @Bean
+    ChangeUserPasswordInteractor changeUserPasswordInteractor(UserRepository userRepository, PasswordEncoder passwordEncoder, EmailSenderRepository emailSenderRepository) {
+        return new ChangeUserPasswordInteractor(userRepository, passwordEncoder, emailSenderRepository);
+    }
+
 }
