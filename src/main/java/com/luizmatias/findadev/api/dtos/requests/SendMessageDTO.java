@@ -10,10 +10,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public record SendMessageDTO(
-        @NotBlank
+        @NotNull
         @Range(min = 1, max = Integer.MAX_VALUE)
         Long fromUser,
-        @NotBlank
+        @NotNull
         @Size(min = 1, max = 500)
         String message,
         @NotNull
