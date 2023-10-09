@@ -22,8 +22,8 @@ public class CreateMatchInteractor {
     }
 
     public Match createMatch(Match match) throws ResourceNotFoundException {
-        removeLikeInteractor.removeLike(match.getClientUser().getId(), match.getDeveloperUser().getId());
-        removeLikeInteractor.removeLike(match.getDeveloperUser().getId(), match.getClientUser().getId());
+        removeLikeInteractor.removeLike(match.getClientUser(), match.getDeveloperUser().getId());
+        removeLikeInteractor.removeLike(match.getDeveloperUser(), match.getClientUser().getId());
 
         Chat chat = new Chat();
         chat.setCreatedAt(new Date());

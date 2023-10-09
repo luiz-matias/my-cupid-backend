@@ -11,16 +11,13 @@ import java.util.List;
 public class GetChatsInteractor {
 
     private final ChatRepository chatRepository;
-    private final UserRepository userRepository;
 
-    public GetChatsInteractor(ChatRepository chatRepository, UserRepository userRepository) {
+    public GetChatsInteractor(ChatRepository chatRepository) {
         this.chatRepository = chatRepository;
-        this.userRepository = userRepository;
     }
 
 
-    public List<Chat> getChats(Long userId) throws ResourceNotFoundException {
-        User user = userRepository.getUser(userId);
+    public List<Chat> getChats(User user) {
         return chatRepository.getUserChats(user);
     }
 

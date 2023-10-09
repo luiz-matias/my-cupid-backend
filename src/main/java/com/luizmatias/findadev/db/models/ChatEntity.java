@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "chats")
@@ -20,10 +19,10 @@ public class ChatEntity {
     @Id
     @GeneratedValue
     private Long id;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "first_user_id")
     private UserEntity firstUserEntity;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "second_user_id")
     private UserEntity secondUserEntity;
     private Date createdAt;

@@ -19,10 +19,10 @@ public class MessageEntity {
     @Id
     @GeneratedValue
     private Long id;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "chat_id")
     private ChatEntity chatEntity;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "from_user_id")
     private UserEntity fromUser;
     private String message;

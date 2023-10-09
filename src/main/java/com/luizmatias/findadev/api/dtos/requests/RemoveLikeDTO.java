@@ -8,10 +8,6 @@ public record RemoveLikeDTO(
         @NotNull
         @Min(1)
         @Max(Long.MAX_VALUE)
-        Long fromId,
-        @NotNull
-        @Min(1)
-        @Max(Long.MAX_VALUE)
         Long toId
 ) {
 

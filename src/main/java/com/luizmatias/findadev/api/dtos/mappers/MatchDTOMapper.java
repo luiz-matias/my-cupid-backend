@@ -18,8 +18,8 @@ public class MatchDTOMapper {
     public static MatchDTO toMatchDTO(Match match) {
         return new MatchDTO(
                 match.getId(),
-                UserDTOMapper.toUserDTO(match.getClientUser()),
-                UserDTOMapper.toUserDTO(match.getDeveloperUser()),
+                UserDTOMapper.toUserDTOWithoutLikesAndMatches(match.getClientUser()),
+                UserDTOMapper.toUserDTOWithoutLikesAndMatches(match.getDeveloperUser()),
                 match.getMatchedAt(),
                 match.getUnmatchedAt()
         );

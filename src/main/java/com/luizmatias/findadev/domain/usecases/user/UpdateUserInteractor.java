@@ -12,9 +12,7 @@ public class UpdateUserInteractor {
         this.userRepository = userRepository;
     }
 
-    public User updateUser(Long id, User user) throws ResourceNotFoundException {
-        User existingUser = userRepository.getUser(id);
-
+    public User updateUser(User existingUser, User user) throws ResourceNotFoundException {
         if (user.getFirstName() != null) {
             existingUser.setFirstName(user.getFirstName());
         }
