@@ -1,7 +1,7 @@
 package com.luizmatias.findadev.config;
 
+import com.luizmatias.findadev.api.controllers.admin.AdminController;
 import com.luizmatias.findadev.api.controllers.auth.AuthController;
-import com.luizmatias.findadev.api.controllers.user.UserController;
 import com.luizmatias.findadev.api.security.Base64RandomGenerator;
 import com.luizmatias.findadev.api.security.SecurityFilter;
 import com.luizmatias.findadev.db.repositories.UserTemporaryTokenDatabaseRepository;
@@ -45,13 +45,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, AuthController.AUTH_PATH + "/register").permitAll()
-                        .requestMatchers(HttpMethod.POST, AuthController.AUTH_PATH + "/activate").permitAll()
-                        .requestMatchers(HttpMethod.POST, AuthController.AUTH_PATH + "/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, AuthController.AUTH_PATH + "/reset-password").permitAll()
-                        .requestMatchers(HttpMethod.POST, AuthController.AUTH_PATH + "/request-reset-password").permitAll()
-                        .requestMatchers(HttpMethod.GET, UserController.USERS_PATH + "/").hasAuthority(UserRole.ADMIN.getRole())
-                        .requestMatchers(HttpMethod.GET, UserController.USERS_PATH).hasAuthority(UserRole.ADMIN.getRole())
+                        .requestMatchers("/error").permitAll()
+                        .requestMatchers(HttpMethod.POST, AuthController.AUTH_PATH + "/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, AdminController.ADMIN_PATH + "/**").hasAuthority(UserRole.ADMIN.getRole())
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

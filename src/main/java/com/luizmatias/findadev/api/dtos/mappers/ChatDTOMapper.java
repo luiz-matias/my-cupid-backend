@@ -8,8 +8,8 @@ public class ChatDTOMapper {
     public static ChatDTO toChatDTO(Chat chat) {
         return new ChatDTO(
                 chat.getId(),
-                UserDTOMapper.toUserDTO(chat.getFirstUser()),
-                UserDTOMapper.toUserDTO(chat.getSecondUser()),
+                UserDTOMapper.toUserDTOWithoutLikesAndMatches(chat.getFirstUser()),
+                UserDTOMapper.toUserDTOWithoutLikesAndMatches(chat.getSecondUser()),
                 chat.getCreatedAt()
         );
     }

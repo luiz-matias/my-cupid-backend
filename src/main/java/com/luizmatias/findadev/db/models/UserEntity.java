@@ -1,5 +1,7 @@
 package com.luizmatias.findadev.db.models;
 
+import com.luizmatias.findadev.db.models.mappers.UserEntityMapper;
+import com.luizmatias.findadev.domain.entities.User;
 import com.luizmatias.findadev.domain.entities.UserRole;
 import com.luizmatias.findadev.domain.entities.UserType;
 import jakarta.persistence.*;
@@ -80,6 +82,10 @@ public class UserEntity implements UserDetails {
         }
 
         return roles;
+    }
+
+    public User toUser() {
+        return UserEntityMapper.toUserWithoutLikesAndMatches(this);
     }
 
     @Override

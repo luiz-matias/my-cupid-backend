@@ -11,9 +11,6 @@ import java.util.Date;
 
 public record SendMessageDTO(
         @NotNull
-        @Range(min = 1, max = Integer.MAX_VALUE)
-        Long fromUser,
-        @NotNull
         @Size(min = 1, max = 500)
         String message,
         @NotNull

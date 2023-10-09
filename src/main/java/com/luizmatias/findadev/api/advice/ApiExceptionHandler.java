@@ -102,12 +102,12 @@ public class ApiExceptionHandler {
         );
     }
 
-    @ResponseStatus(value = HttpStatus.CONFLICT)
-    @ExceptionHandler(UserNotInChatException.class)
-    public ApiErrorResponseDTO handleUserNotInChat(UserNotInChatException ex) {
+    @ResponseStatus(value = HttpStatus.FORBIDDEN)
+    @ExceptionHandler(NotAuthorizedException.class)
+    public ApiErrorResponseDTO handleNotAuthorized(NotAuthorizedException ex) {
         return new ApiErrorResponseDTO(
                 new Date(),
-                HttpStatus.CONFLICT.value(),
+                HttpStatus.FORBIDDEN.value(),
                 ex.getMessage()
         );
     }

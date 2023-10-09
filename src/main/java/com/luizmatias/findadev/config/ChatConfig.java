@@ -26,8 +26,8 @@ public class ChatConfig {
     }
 
     @Bean
-    GetChatsInteractor getChatsInteractor(ChatRepository chatRepository, UserRepository userRepository) {
-        return new GetChatsInteractor(chatRepository, userRepository);
+    GetChatsInteractor getChatsInteractor(ChatRepository chatRepository) {
+        return new GetChatsInteractor(chatRepository);
     }
 
     @Bean

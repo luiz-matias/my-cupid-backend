@@ -15,8 +15,7 @@ public class RemoveLikeInteractor {
         this.userRepository = userRepository;
     }
 
-    public void removeLike(Long fromId, Long toId) throws ResourceNotFoundException {
-        User userFrom = userRepository.getUser(fromId);
+    public void removeLike(User userFrom, Long toId) throws ResourceNotFoundException {
         User userTo = userRepository.getUser(toId);
 
         ArrayList<User> likes = new ArrayList<>();

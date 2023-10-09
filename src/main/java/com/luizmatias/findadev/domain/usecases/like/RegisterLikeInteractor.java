@@ -24,12 +24,11 @@ public class RegisterLikeInteractor {
         this.createMatchInteractor = createMatchInteractor;
     }
 
-    public Optional<Match> registerLike(Long fromId, Long toId) throws ResourceNotFoundException, LikeOnSameUserException, LikeOnSameUserTypeException {
-        if (fromId.equals(toId)) {
+    public Optional<Match> registerLike(User userFrom, Long toId) throws ResourceNotFoundException, LikeOnSameUserException, LikeOnSameUserTypeException {
+        if (userFrom.getId().equals(toId)) {
             throw new LikeOnSameUserException("User can't like himself");
         }
 
-        User userFrom = userRepository.getUser(fromId);
         User userTo = userRepository.getUser(toId);
 
         if (userFrom.getUserType() == userTo.getUserType()) {
@@ -37,19 +36,24 @@ public class RegisterLikeInteractor {
         }
 
         Optional<Match> optionalMatch = Optional.empty();
-        boolean isMatch = userTo.getLikedUsers().stream().anyMatch(user -> Objects.equals(user.getId(), fromId));
+        boolean isMatch = userTo.getLikedUsers().stream().anyMatch(user -> Objects.equals(user.getId(), userFrom.getId()));
 
         if (isMatch) {
             User clientUser = userFrom.getUserType() == UserType.CLIENT ? userFrom : userTo;
             User developerUser = userFrom.getUserType() == UserType.DEVELOPER ? userFrom : userTo;
 
-            optionalMatch = Optional.of(createMatchInteractor.createMatch(new Match(
-                    null,
-                    clientUser,
-                    developerUser,
-                    new Date(),
-                    null
-            )));
+            optionalMatch = Optional.of(
+                    createMatchInteractor.createMatch(
+                            new Match(
+                                    null,
+                                    clientUser,
+                                    developerUser,
+                                    new Date(),
+                                    null
+                            )
+                    )
+            );
+
         } else {
             ArrayList<User> likes = new ArrayList<>();
 
