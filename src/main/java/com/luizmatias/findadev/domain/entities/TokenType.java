@@ -2,6 +2,7 @@ package com.luizmatias.findadev.domain.entities;
 
 public enum TokenType {
     RECOVER_PASSWORD("RECOVER_PASSWORD"),
+    CHANGE_PASSWORD("CHANGE_PASSWORD"),
     ACTIVATE_ACCOUNT("ACTIVATE_ACCOUNT");
 
     private String type;
