@@ -3,6 +3,7 @@ package com.luizmatias.findadev.domain.repositories;
 import com.luizmatias.findadev.domain.entities.Chat;
 import com.luizmatias.findadev.domain.entities.Message;
 import com.luizmatias.findadev.domain.entities.User;
+import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -15,6 +16,15 @@ public interface ChatRepository {
      * @return chat reference that was just created
      */
     Chat createChat(Chat chat);
+
+    /**
+     * Get a chat for a given id
+     *
+     * @param id the chat id
+     * @return chat for the id
+     * @throws ResourceNotFoundException in case a chat wasn't found for the given id
+     */
+    Chat getChatById(Long id) throws ResourceNotFoundException;
 
     /**
      * Send a message inside a chat

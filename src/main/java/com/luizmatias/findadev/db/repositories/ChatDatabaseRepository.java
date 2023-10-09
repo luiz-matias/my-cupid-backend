@@ -7,9 +7,11 @@ import com.luizmatias.findadev.db.models.mappers.MessageEntityMapper;
 import com.luizmatias.findadev.domain.entities.Chat;
 import com.luizmatias.findadev.domain.entities.Message;
 import com.luizmatias.findadev.domain.entities.User;
+import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
 import com.luizmatias.findadev.domain.repositories.ChatRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ChatDatabaseRepository implements ChatRepository {
 
@@ -25,6 +27,17 @@ public class ChatDatabaseRepository implements ChatRepository {
     public Chat createChat(Chat chat) {
         ChatEntity chatEntity = ChatEntityMapper.toChatEntity(chat);
         return ChatEntityMapper.toChat(chatJpaRepository.save(chatEntity));
+    }
+
+    @Override
+    public Chat getChatById(Long id) throws ResourceNotFoundException {
+        Optional<ChatEntity> chat = chatJpaRepository.findById(id);
+
+        if (chat.isEmpty()) {
+            throw new ResourceNotFoundException("cannot find a chat with id = " + id);
+        }
+
+        return ChatEntityMapper.toChat(chat.get());
     }
 
     @Override
