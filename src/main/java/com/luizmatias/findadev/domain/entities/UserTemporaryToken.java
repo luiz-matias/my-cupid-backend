@@ -2,17 +2,17 @@ package com.luizmatias.findadev.domain.entities;
 
 import java.util.Date;
 
-public class PasswordToken {
+public class UserTemporaryToken {
 
     private Long id;
     private User user;
     private String token;
     private Date expiresAt;
 
-    public PasswordToken() {
+    public UserTemporaryToken() {
     }
 
-    public PasswordToken(Long id, User user, String token, Date expiresAt) {
+    public UserTemporaryToken(Long id, User user, String token, Date expiresAt) {
         this.id = id;
         this.user = user;
         this.token = token;

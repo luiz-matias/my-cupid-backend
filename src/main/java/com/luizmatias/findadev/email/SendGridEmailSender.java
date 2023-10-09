@@ -18,7 +18,9 @@ public class SendGridEmailSender implements EmailSenderRepository {
     private String apiKey;
     @Value("${sendgrid.from.email}")
     private String applicationEmail;
+    private static final String verifyAccountTemplateId = "d-30588cbd007246feacb447281d159075";
     private static final String recoverPasswordTemplateId = "d-9ea0cdfbe03c4eea984375ff615954f6";
+    private static final String passwordChangedTemplateId = "d-8ef01364fdbc418e8cd9279056ab0929";
 
     @Override
     public void sendEmail(String from, String to, String subject, String body) throws FailedToSendEmailException {
@@ -45,17 +47,18 @@ public class SendGridEmailSender implements EmailSenderRepository {
     }
 
     @Override
-    public void sendPasswordRecoveryEmail(String token, String to) throws FailedToSendEmailException {
+    public void sendVerifyAccountEmail(String token, String to, String username) throws FailedToSendEmailException {
         Email mailFrom = new Email(applicationEmail);
         Email mailTo = new Email(to);
         Mail mail = new Mail();
 
         mail.setFrom(mailFrom);
-        mail.setTemplateId(recoverPasswordTemplateId);
+        mail.setTemplateId(verifyAccountTemplateId);
 
         Personalization personalization = new Personalization();
         personalization.addTo(mailTo);
         personalization.addDynamicTemplateData("token", token);
+        personalization.addDynamicTemplateData("username", username);
 
         mail.addPersonalization(personalization);
 
@@ -68,7 +71,72 @@ public class SendGridEmailSender implements EmailSenderRepository {
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
             Response response = sg.api(request);
-            if (response.getStatusCode() != 200) {
+            if (response.getStatusCode() != 202) {
+                throw new FailedToSendEmailException("failed to send email to verify account");
+            }
+        } catch (Exception e) {
+            throw new FailedToSendEmailException("failed to send email to verify account");
+        }
+    }
+
+    @Override
+    public void sendPasswordChangedEmail(String to, String username) throws FailedToSendEmailException {
+        Email mailFrom = new Email(applicationEmail);
+        Email mailTo = new Email(to);
+        Mail mail = new Mail();
+
+        mail.setFrom(mailFrom);
+        mail.setTemplateId(passwordChangedTemplateId);
+
+        Personalization personalization = new Personalization();
+        personalization.addTo(mailTo);
+        personalization.addDynamicTemplateData("username", username);
+
+        mail.addPersonalization(personalization);
+
+        SendGrid sg = new SendGrid(apiKey);
+
+        Request request = new Request();
+
+        try {
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+            Response response = sg.api(request);
+            if (response.getStatusCode() != 202) {
+                throw new FailedToSendEmailException("failed to send email to inform password changed");
+            }
+        } catch (Exception e) {
+            throw new FailedToSendEmailException("failed to send email to inform password changed");
+        }
+    }
+
+    @Override
+    public void sendPasswordRecoveryEmail(String token, String to, String username) throws FailedToSendEmailException {
+        Email mailFrom = new Email(applicationEmail);
+        Email mailTo = new Email(to);
+        Mail mail = new Mail();
+
+        mail.setFrom(mailFrom);
+        mail.setTemplateId(recoverPasswordTemplateId);
+
+        Personalization personalization = new Personalization();
+        personalization.addTo(mailTo);
+        personalization.addDynamicTemplateData("token", token);
+        personalization.addDynamicTemplateData("username", username);
+
+        mail.addPersonalization(personalization);
+
+        SendGrid sg = new SendGrid(apiKey);
+
+        Request request = new Request();
+
+        try {
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+            Response response = sg.api(request);
+            if (response.getStatusCode() != 202) {
                 throw new FailedToSendEmailException("failed to send email to recover password");
             }
         } catch (Exception e) {

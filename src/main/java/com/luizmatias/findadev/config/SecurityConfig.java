@@ -4,15 +4,14 @@ import com.luizmatias.findadev.api.controllers.auth.AuthController;
 import com.luizmatias.findadev.api.controllers.user.UserController;
 import com.luizmatias.findadev.api.security.Base64RandomGenerator;
 import com.luizmatias.findadev.api.security.SecurityFilter;
-import com.luizmatias.findadev.db.repositories.PasswordTokenDatabaseRepository;
-import com.luizmatias.findadev.db.repositories.PasswordTokenJpaRepository;
+import com.luizmatias.findadev.db.repositories.UserTemporaryTokenDatabaseRepository;
+import com.luizmatias.findadev.db.repositories.UserTemporaryTokenJpaRepository;
 import com.luizmatias.findadev.domain.entities.UserRole;
 import com.luizmatias.findadev.domain.repositories.EmailSenderRepository;
-import com.luizmatias.findadev.domain.repositories.PasswordTokenRepository;
 import com.luizmatias.findadev.domain.repositories.RandomGenerator;
 import com.luizmatias.findadev.domain.repositories.UserRepository;
-import com.luizmatias.findadev.domain.usecases.auth.RequestResetPasswordInteractor;
-import com.luizmatias.findadev.domain.usecases.auth.ResetPasswordInteractor;
+import com.luizmatias.findadev.domain.repositories.UserTemporaryTokenRepository;
+import com.luizmatias.findadev.domain.usecases.auth.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -47,11 +46,12 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, AuthController.AUTH_PATH + "/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, AuthController.AUTH_PATH + "/activate").permitAll()
                         .requestMatchers(HttpMethod.POST, AuthController.AUTH_PATH + "/login").permitAll()
                         .requestMatchers(HttpMethod.POST, AuthController.AUTH_PATH + "/reset-password").permitAll()
                         .requestMatchers(HttpMethod.POST, AuthController.AUTH_PATH + "/request-reset-password").permitAll()
-                        .requestMatchers(HttpMethod.GET, UserController.USERS_PATH + "/").hasRole(UserRole.ADMIN.getRole())
-                        .requestMatchers(HttpMethod.GET, UserController.USERS_PATH).hasRole(UserRole.ADMIN.getRole())
+                        .requestMatchers(HttpMethod.GET, UserController.USERS_PATH + "/").hasAuthority(UserRole.ADMIN.getRole())
+                        .requestMatchers(HttpMethod.GET, UserController.USERS_PATH).hasAuthority(UserRole.ADMIN.getRole())
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
@@ -79,18 +79,33 @@ public class SecurityConfig {
     }
 
     @Bean
-    public PasswordTokenRepository passwordTokenRepository(PasswordTokenJpaRepository passwordTokenJpaRepository) {
-        return new PasswordTokenDatabaseRepository(passwordTokenJpaRepository);
+    public UserTemporaryTokenRepository passwordTokenRepository(UserTemporaryTokenJpaRepository userTemporaryTokenJpaRepository) {
+        return new UserTemporaryTokenDatabaseRepository(userTemporaryTokenJpaRepository);
     }
 
     @Bean
-    RequestResetPasswordInteractor requestResetPasswordInteractor(UserRepository userRepository, PasswordTokenRepository passwordTokenRepository, com.luizmatias.findadev.domain.repositories.PasswordEncoder passwordEncoder) {
-        return new RequestResetPasswordInteractor(userRepository, passwordTokenRepository, passwordEncoder);
+    VerifyUserTemporaryTokenInteractor verifyUserTemporaryTokenInteractor(UserTemporaryTokenRepository userTemporaryTokenRepository) {
+        return new VerifyUserTemporaryTokenInteractor(userTemporaryTokenRepository);
     }
 
     @Bean
-    ResetPasswordInteractor resetPasswordInteractor(UserRepository userRepository, PasswordTokenRepository passwordTokenRepository, EmailSenderRepository emailSenderRepository, RandomGenerator randomGenerator) {
-        return new ResetPasswordInteractor(userRepository, passwordTokenRepository, emailSenderRepository, randomGenerator);
+    VerifyUserInteractor verifyUserInteractor() {
+        return new VerifyUserInteractor();
+    }
+
+    @Bean
+    CreateUserTemporaryTokenInteractor createUserTemporaryTokenInteractor(UserTemporaryTokenRepository userTemporaryTokenRepository, RandomGenerator randomGenerator) {
+        return new CreateUserTemporaryTokenInteractor(userTemporaryTokenRepository, randomGenerator);
+    }
+
+    @Bean
+    RequestResetPasswordInteractor requestResetPasswordInteractor(UserRepository userRepository, VerifyUserTemporaryTokenInteractor verifyUserTemporaryTokenInteractor, EmailSenderRepository emailSenderRepository, com.luizmatias.findadev.domain.repositories.PasswordEncoder passwordEncoder) {
+        return new RequestResetPasswordInteractor(userRepository, verifyUserTemporaryTokenInteractor, emailSenderRepository, passwordEncoder);
+    }
+
+    @Bean
+    ResetPasswordInteractor resetPasswordInteractor(UserRepository userRepository, CreateUserTemporaryTokenInteractor createUserTemporaryTokenInteractor, EmailSenderRepository emailSenderRepository) {
+        return new ResetPasswordInteractor(userRepository, createUserTemporaryTokenInteractor, emailSenderRepository);
     }
 
 }

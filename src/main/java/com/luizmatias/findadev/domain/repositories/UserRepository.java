@@ -50,6 +50,15 @@ public interface UserRepository {
     User updateUserProfile(User user) throws ResourceNotFoundException;
 
     /**
+     * updates the user email has verified and returns its own reference
+     *
+     * @param user the data to be updated
+     * @return the updated user
+     * @throws ResourceNotFoundException in case a user with its id doesn't exist
+     */
+    User verifyUserEmail(User user) throws ResourceNotFoundException;
+
+    /**
      * updates the user likes and returns its own reference
      *
      * @param user the data to be updated

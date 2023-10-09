@@ -72,6 +72,16 @@ public class ApiExceptionHandler {
         );
     }
 
+    @ResponseStatus(value = HttpStatus.FORBIDDEN)
+    @ExceptionHandler(InactiveUserException.class)
+    public ApiErrorResponseDTO handleInactiveUser(InactiveUserException ex) {
+        return new ApiErrorResponseDTO(
+                new Date(),
+                HttpStatus.FORBIDDEN.value(),
+                ex.getMessage()
+        );
+    }
+
     @ResponseStatus(value = HttpStatus.CONFLICT)
     @ExceptionHandler(ResourceAlreadyExistsException.class)
     public ApiErrorResponseDTO handleResourceAlreadyExists(ResourceAlreadyExistsException ex) {
