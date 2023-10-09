@@ -45,6 +45,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/error").permitAll()
                         .requestMatchers(HttpMethod.POST, AuthController.AUTH_PATH + "/**").permitAll()
                         .requestMatchers(HttpMethod.GET, AdminController.ADMIN_PATH + "/**").hasAuthority(UserRole.ADMIN.getRole())
                         .anyRequest().authenticated()
