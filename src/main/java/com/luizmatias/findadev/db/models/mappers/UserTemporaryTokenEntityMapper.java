@@ -10,6 +10,7 @@ public class UserTemporaryTokenEntityMapper {
                 userTemporaryTokenEntity.getId(),
                 UserEntityMapper.toUser(userTemporaryTokenEntity.getUserEntity()),
                 userTemporaryTokenEntity.getToken(),
+                userTemporaryTokenEntity.getTokenType(),
                 userTemporaryTokenEntity.getExpiresAt()
         );
     }
@@ -19,6 +20,7 @@ public class UserTemporaryTokenEntityMapper {
                 userTemporaryToken.getId(),
                 UserEntityMapper.toUserEntity(userTemporaryToken.getUser()),
                 userTemporaryToken.getToken(),
+                userTemporaryToken.getTokenType(),
                 userTemporaryToken.getExpiresAt()
         );
     }

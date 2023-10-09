@@ -1,5 +1,6 @@
 package com.luizmatias.findadev.domain.usecases.auth;
 
+import com.luizmatias.findadev.domain.entities.TokenType;
 import com.luizmatias.findadev.domain.entities.User;
 import com.luizmatias.findadev.domain.entities.UserTemporaryToken;
 import com.luizmatias.findadev.domain.exceptions.FailedToSendEmailException;
@@ -30,7 +31,7 @@ public class ResetPasswordInteractor {
 
         User user = userOptional.get();
 
-        UserTemporaryToken userTemporaryToken = createUserTemporaryTokenInteractor.createToken(user);
+        UserTemporaryToken userTemporaryToken = createUserTemporaryTokenInteractor.createToken(user, TokenType.RECOVER_PASSWORD);
 
         emailSenderRepository.sendPasswordRecoveryEmail(
                 userTemporaryToken.getToken(),

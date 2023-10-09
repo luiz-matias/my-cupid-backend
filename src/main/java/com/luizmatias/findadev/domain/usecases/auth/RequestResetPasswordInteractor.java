@@ -1,5 +1,6 @@
 package com.luizmatias.findadev.domain.usecases.auth;
 
+import com.luizmatias.findadev.domain.entities.TokenType;
 import com.luizmatias.findadev.domain.entities.User;
 import com.luizmatias.findadev.domain.exceptions.FailedToSendEmailException;
 import com.luizmatias.findadev.domain.exceptions.InvalidTokenException;
@@ -23,7 +24,7 @@ public class RequestResetPasswordInteractor {
     }
 
     public User requestResetPassword(String token, String password) throws InvalidTokenException, ResourceNotFoundException, FailedToSendEmailException {
-        User user = verifyUserTemporaryTokenInteractor.verifyToken(token);
+        User user = verifyUserTemporaryTokenInteractor.verifyToken(token, TokenType.RECOVER_PASSWORD);
 
         String encodedPassword = passwordEncoder.encode(password);
         user = userRepository.updateUserPassword(user.getId(), encodedPassword);

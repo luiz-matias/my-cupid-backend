@@ -1,5 +1,6 @@
 package com.luizmatias.findadev.domain.usecases.auth;
 
+import com.luizmatias.findadev.domain.entities.TokenType;
 import com.luizmatias.findadev.domain.entities.User;
 import com.luizmatias.findadev.domain.exceptions.InvalidTokenException;
 import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
@@ -17,7 +18,7 @@ public class ActivateUserInteractor {
     }
 
     public User activateUser(String token) throws InvalidTokenException, ResourceNotFoundException {
-        User user = verifyUserTemporaryTokenInteractor.verifyToken(token);
+        User user = verifyUserTemporaryTokenInteractor.verifyToken(token, TokenType.ACTIVATE_ACCOUNT);
         user = userRepository.verifyUserEmail(user);
         return user;
     }

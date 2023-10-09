@@ -1,5 +1,6 @@
 package com.luizmatias.findadev.domain.usecases.auth;
 
+import com.luizmatias.findadev.domain.entities.TokenType;
 import com.luizmatias.findadev.domain.entities.User;
 import com.luizmatias.findadev.domain.entities.UserTemporaryToken;
 import com.luizmatias.findadev.domain.repositories.RandomGenerator;
@@ -20,10 +21,11 @@ public class CreateUserTemporaryTokenInteractor {
         this.randomGenerator = randomGenerator;
     }
 
-    public UserTemporaryToken createToken(User user) {
+    public UserTemporaryToken createToken(User user, TokenType tokenType) {
         UserTemporaryToken userTemporaryToken = new UserTemporaryToken();
         userTemporaryToken.setUser(user);
         userTemporaryToken.setToken(randomGenerator.generate());
+        userTemporaryToken.setTokenType(tokenType);
         userTemporaryToken.setExpiresAt(Date.from(getExpirationDate()));
 
         return userTemporaryTokenRepository.createTemporaryToken(userTemporaryToken);

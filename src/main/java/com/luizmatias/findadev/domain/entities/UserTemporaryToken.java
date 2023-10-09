@@ -7,15 +7,17 @@ public class UserTemporaryToken {
     private Long id;
     private User user;
     private String token;
+    private TokenType tokenType;
     private Date expiresAt;
 
     public UserTemporaryToken() {
     }
 
-    public UserTemporaryToken(Long id, User user, String token, Date expiresAt) {
+    public UserTemporaryToken(Long id, User user, String token, TokenType tokenType, Date expiresAt) {
         this.id = id;
         this.user = user;
         this.token = token;
+        this.tokenType = tokenType;
         this.expiresAt = expiresAt;
     }
 
@@ -41,6 +43,14 @@ public class UserTemporaryToken {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public TokenType getTokenType() {
+        return tokenType;
+    }
+
+    public void setTokenType(TokenType tokenType) {
+        this.tokenType = tokenType;
     }
 
     public Date getExpiresAt() {

@@ -1,5 +1,6 @@
 package com.luizmatias.findadev.domain.repositories;
 
+import com.luizmatias.findadev.domain.entities.TokenType;
 import com.luizmatias.findadev.domain.entities.UserTemporaryToken;
 import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
 
@@ -28,9 +29,10 @@ public interface UserTemporaryTokenRepository {
      * Gets a specific userTemporaryToken filtering by token
      *
      * @param token the token of the userTemporaryToken
+     * @param type  the type of token
      * @return an optional reference for the userTemporaryToken
      */
-    Optional<UserTemporaryToken> getTemporaryTokenByToken(String token);
+    Optional<UserTemporaryToken> getTemporaryTokenByTokenAndType(String token, TokenType type);
 
     /**
      * deletes a passwordToken
