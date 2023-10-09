@@ -6,18 +6,16 @@ public class Message {
     private Long id;
     private Chat chat;
     private User from;
-    private User to;
     private String message;
     private Date sentAt;
 
     public Message() {
     }
 
-    public Message(Long id, Chat chat, User from, User to, String message, Date sentAt) {
+    public Message(Long id, Chat chat, User from, String message, Date sentAt) {
         this.id = id;
         this.chat = chat;
         this.from = from;
-        this.to = to;
         this.message = message;
         this.sentAt = sentAt;
     }
@@ -44,14 +42,6 @@ public class Message {
 
     public void setFrom(User from) {
         this.from = from;
-    }
-
-    public User getTo() {
-        return to;
-    }
-
-    public void setTo(User to) {
-        this.to = to;
     }
 
     public String getMessage() {

@@ -25,9 +25,6 @@ public class MessageEntity {
     @ManyToOne
     @JoinColumn(name = "from_user_id")
     private UserEntity fromUser;
-    @ManyToOne
-    @JoinColumn(name = "to_user_id")
-    private UserEntity toUser;
     private String message;
     private Date sentAt;
 
