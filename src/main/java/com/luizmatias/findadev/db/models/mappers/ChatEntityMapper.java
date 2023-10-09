@@ -9,8 +9,8 @@ public class ChatEntityMapper {
     public static Chat toChat(ChatEntity chatEntity) {
         return new Chat(
                 chatEntity.getId(),
-                UserEntityMapper.toUser(chatEntity.getFirstUserEntity()),
-                UserEntityMapper.toUser(chatEntity.getSecondUserEntity()),
+                UserEntityMapper.toUserWithoutLikesAndMatches(chatEntity.getFirstUserEntity()),
+                UserEntityMapper.toUserWithoutLikesAndMatches(chatEntity.getSecondUserEntity()),
                 chatEntity.getCreatedAt()
         );
     }
