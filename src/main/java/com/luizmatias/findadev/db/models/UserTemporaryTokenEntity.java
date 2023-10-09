@@ -1,5 +1,6 @@
 package com.luizmatias.findadev.db.models;
 
+import com.luizmatias.findadev.domain.entities.TokenType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public class UserTemporaryTokenEntity {
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;
     private String token;
+    private TokenType tokenType;
     private Date expiresAt;
 
 }

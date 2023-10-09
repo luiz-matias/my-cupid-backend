@@ -10,6 +10,8 @@ public interface EmailSenderRepository {
 
     void sendPasswordRecoveryEmail(String token, String to, String username) throws FailedToSendEmailException;
 
+    void sendChangePasswordEmail(String token, String to, String username) throws FailedToSendEmailException;
+
     void sendPasswordChangedEmail(String to, String username) throws FailedToSendEmailException;
 
 }

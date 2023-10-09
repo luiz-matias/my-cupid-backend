@@ -1,5 +1,6 @@
 package com.luizmatias.findadev.domain.usecases.user;
 
+import com.luizmatias.findadev.domain.entities.TokenType;
 import com.luizmatias.findadev.domain.entities.User;
 import com.luizmatias.findadev.domain.entities.UserTemporaryToken;
 import com.luizmatias.findadev.domain.exceptions.FailedToSendEmailException;
@@ -33,7 +34,7 @@ public class CreateUserInteractor {
 
         user = userRepository.createUser(user);
 
-        UserTemporaryToken userTemporaryToken = createUserTemporaryTokenInteractor.createToken(user);
+        UserTemporaryToken userTemporaryToken = createUserTemporaryTokenInteractor.createToken(user, TokenType.ACTIVATE_ACCOUNT);
 
         emailSenderRepository.sendVerifyAccountEmail(userTemporaryToken.getToken(), user.getEmail(), user.getFirstName());
 

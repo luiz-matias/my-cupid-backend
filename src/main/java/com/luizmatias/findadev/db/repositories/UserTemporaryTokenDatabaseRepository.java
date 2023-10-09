@@ -2,6 +2,7 @@ package com.luizmatias.findadev.db.repositories;
 
 import com.luizmatias.findadev.db.models.UserTemporaryTokenEntity;
 import com.luizmatias.findadev.db.models.mappers.UserTemporaryTokenEntityMapper;
+import com.luizmatias.findadev.domain.entities.TokenType;
 import com.luizmatias.findadev.domain.entities.UserTemporaryToken;
 import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
 import com.luizmatias.findadev.domain.repositories.UserTemporaryTokenRepository;
@@ -34,8 +35,8 @@ public class UserTemporaryTokenDatabaseRepository implements UserTemporaryTokenR
     }
 
     @Override
-    public Optional<UserTemporaryToken> getTemporaryTokenByToken(String token) {
-        return userTemporaryTokenJpaRepository.findByToken(token).map(UserTemporaryTokenEntityMapper::toUserTemporaryToken);
+    public Optional<UserTemporaryToken> getTemporaryTokenByTokenAndType(String token, TokenType type) {
+        return userTemporaryTokenJpaRepository.findByTokenAndType(token, type).map(UserTemporaryTokenEntityMapper::toUserTemporaryToken);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.luizmatias.findadev.domain.usecases.auth;
 
+import com.luizmatias.findadev.domain.entities.TokenType;
 import com.luizmatias.findadev.domain.entities.User;
 import com.luizmatias.findadev.domain.entities.UserTemporaryToken;
 import com.luizmatias.findadev.domain.exceptions.InvalidTokenException;
@@ -17,8 +18,8 @@ public class VerifyUserTemporaryTokenInteractor {
         this.userTemporaryTokenRepository = userTemporaryTokenRepository;
     }
 
-    public User verifyToken(String token) throws InvalidTokenException, ResourceNotFoundException {
-        Optional<UserTemporaryToken> userTemporaryTokenOptional = userTemporaryTokenRepository.getTemporaryTokenByToken(token);
+    public User verifyToken(String token, TokenType tokenType) throws InvalidTokenException, ResourceNotFoundException {
+        Optional<UserTemporaryToken> userTemporaryTokenOptional = userTemporaryTokenRepository.getTemporaryTokenByTokenAndType(token, tokenType);
 
         if (userTemporaryTokenOptional.isEmpty()) {
             throw new InvalidTokenException("Invalid token");
