@@ -2,10 +2,10 @@
 
 <br />
 <div align="center">
-  <img src="https://i.imgur.com/42m4MaA.png" alt="Project Logo" height="200">
+  <img src="https://i.imgur.com/42m4MaA.png" alt="Project Logo" height="150">
   <h1 align="center">Find a Dev - Backend</h1>
   <p align="center">
-    A system that connects developers and clients in a Tinder-style experience.
+    A system that connects people in a Tinder-style experience.
   </p>
   <img align="center" src="https://github.com/luiz-matias/find-a-dev-backend/actions/workflows/maven.yml/badge.svg" alt="Tests status">
 </div>
@@ -69,7 +69,7 @@ ___
 Spring Boot is an opinionated extension from Spring that allows us to develop backend services in a fast-paced rhythm.
 
 # Roadmap
-
+## Basic Business Rules
 - [X] Project Setup
   - [X] Readme About the Project
   - [X] List of epics and stories
@@ -89,6 +89,60 @@ Spring Boot is an opinionated extension from Spring that allows us to develop ba
   - [X] Match
 - [X] Messaging
   - [X] Chat between Devs and Clients
+
+## Extended Business Rules
+- [ ] Media
+  - [ ] User profile picture
+  - [ ] Chat image upload
+  - [ ] Chat video upload
+  - [ ] Chat PDF upload
+- [ ] Enhanced profiles
+  - [ ] Developer
+    - [ ] Skills
+      - [ ] Area-specific: Mobile, Front-end, Back-end, CLI, Embedded, etc.
+      - [ ] Stack-specific: React, Flutter, Android Native, etc.
+    - [ ] Formation
+    - [ ] Social links
+    - [ ] Areas of interest
+  - [ ] Client
+    - [ ] Skills needed
+    - [ ] Areas of interest
+
+## Tech Features
+- [X] Security
+  - [X] Authentication via JWT
+  - [X] Strong password requirements
+  - [X] Password encryption
+  - [X] Role-based routes
+- [X] Email services
+  - [X] Account activation
+  - [X] Password change
+  - [X] Password recovery
+  - [X] Password changed confirmation
+  - [ ] Match notification
+- [ ] Listing basics
+  - [ ] Pagination
+  - [ ] Sorting
+  - [ ] Filtering
+  - [ ] Search
+- [ ] CI/CD
+  - [ ] PR pipeline
+    - [ ] Run lint
+    - [ ] Run tests
+    - [ ] Code coverage analysis
+  - [ ] Staging pipeline
+    - [ ] Automated deployment in staging environment
+    - [ ] Clone production data everyday
+  - [ ] Production pipeline
+    - [ ] Automated deployment in production environment
+    - [ ] Automated database backups everyday
+- [ ] Database
+  - [ ] Migrations
+  - [ ] Pre-populate data for dev environments
+- [ ] Analytics
+  - [ ] Logging
+  - [ ] Analytics Dashboard
+  - [ ] Error Dashboard
 
 # License
 
