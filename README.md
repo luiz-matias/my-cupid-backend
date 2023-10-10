@@ -128,7 +128,7 @@ Spring Boot is an opinionated extension from Spring that allows us to develop ba
 - [ ] CI/CD
   - [ ] PR pipeline
     - [ ] Run lint
-    - [ ] Run tests
+    - [X] Run tests
     - [ ] Code coverage analysis
   - [ ] Staging pipeline
     - [ ] Automated deployment in staging environment
