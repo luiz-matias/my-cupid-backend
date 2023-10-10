@@ -108,7 +108,7 @@ Spring Boot is an opinionated extension from Spring that allows us to develop ba
     - [ ] Skills needed
     - [ ] Areas of interest
 
-## Tech Features
+## Tech Features Wishlist
 - [X] Security
   - [X] Authentication via JWT
   - [X] Strong password requirements
@@ -143,6 +143,11 @@ Spring Boot is an opinionated extension from Spring that allows us to develop ba
   - [ ] Logging
   - [ ] Analytics Dashboard
   - [ ] Error Dashboard
+- [ ] CDN
+  - [ ] User profile picture
+  - [ ] Chat images
+  - [ ] Chat videos
+  - [ ] Thumbnails
 
 # License
 
