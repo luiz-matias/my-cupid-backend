@@ -120,11 +120,9 @@ Spring Boot is an opinionated extension from Spring that allows us to develop ba
   - [X] Password recovery
   - [X] Password changed confirmation
   - [ ] Match notification
-- [ ] Listing basics
-  - [ ] Pagination
-  - [ ] Sorting
-  - [ ] Filtering
-  - [ ] Search
+- [X] Listing basics
+  - [X] Pagination
+  - [X] Sorting
 - [ ] CI/CD
   - [ ] PR pipeline
     - [ ] Run lint
