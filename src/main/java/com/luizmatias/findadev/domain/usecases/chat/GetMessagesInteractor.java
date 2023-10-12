@@ -2,10 +2,10 @@ package com.luizmatias.findadev.domain.usecases.chat;
 
 import com.luizmatias.findadev.domain.entities.Chat;
 import com.luizmatias.findadev.domain.entities.Message;
+import com.luizmatias.findadev.domain.entities.pagination.PageRequest;
+import com.luizmatias.findadev.domain.entities.pagination.PageResponse;
 import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
 import com.luizmatias.findadev.domain.repositories.ChatRepository;
-
-import java.util.List;
 
 public class GetMessagesInteractor {
 
@@ -16,9 +16,9 @@ public class GetMessagesInteractor {
     }
 
 
-    public List<Message> getMessages(Long chatId) throws ResourceNotFoundException {
+    public PageResponse<Message> getMessages(Long chatId, PageRequest pageRequest) throws ResourceNotFoundException {
         Chat chat = chatRepository.getChatById(chatId);
-        return chatRepository.getChatMessages(chat);
+        return chatRepository.getChatMessages(chat, pageRequest);
     }
 
 }

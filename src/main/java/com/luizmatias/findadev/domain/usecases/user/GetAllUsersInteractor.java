@@ -1,9 +1,9 @@
 package com.luizmatias.findadev.domain.usecases.user;
 
+import com.luizmatias.findadev.domain.entities.pagination.PageRequest;
+import com.luizmatias.findadev.domain.entities.pagination.PageResponse;
 import com.luizmatias.findadev.domain.entities.User;
 import com.luizmatias.findadev.domain.repositories.UserRepository;
-
-import java.util.List;
 
 public class GetAllUsersInteractor {
 
@@ -13,8 +13,8 @@ public class GetAllUsersInteractor {
         this.userRepository = userRepository;
     }
 
-    public List<User> getAllUsers() {
-        return userRepository.getAllUsers();
+    public PageResponse<User> getAllUsers(PageRequest pageRequest) {
+        return userRepository.getAllUsers(pageRequest);
     }
 
 }
