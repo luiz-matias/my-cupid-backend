@@ -12,7 +12,7 @@ import com.luizmatias.findadev.api.dtos.responses.ChatDTO;
 import com.luizmatias.findadev.api.dtos.responses.UserDTO;
 import com.luizmatias.findadev.db.models.UserEntity;
 import com.luizmatias.findadev.domain.entities.User;
-import com.luizmatias.findadev.domain.exceptions.FailedToSendEmailException;
+import com.luizmatias.findadev.domain.exceptions.FailedToSendNotificationException;
 import com.luizmatias.findadev.domain.exceptions.InvalidTokenException;
 import com.luizmatias.findadev.domain.exceptions.PasswordMismatchException;
 import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
@@ -60,14 +60,14 @@ public class UserController {
 
     @Transactional
     @PutMapping(path = "/password")
-    public ResponseEntity<UserDTO> changePassword(@RequestBody @Valid ChangePasswordDTO changePasswordDTO, @AuthenticationPrincipal UserEntity userEntity) throws PasswordMismatchException, FailedToSendEmailException {
+    public ResponseEntity<UserDTO> changePassword(@RequestBody @Valid ChangePasswordDTO changePasswordDTO, @AuthenticationPrincipal UserEntity userEntity) throws PasswordMismatchException, FailedToSendNotificationException {
         changePasswordInteractor.changePassword(userEntity.toUser(), changePasswordDTO.oldPassword());
         return ResponseEntity.ok().build();
     }
 
     @Transactional
     @PutMapping(path = "/password-confirmation")
-    public ResponseEntity<UserDTO> confirmChangePassword(@RequestBody @Valid ConfirmChangePasswordDTO confirmChangePasswordDTO, @AuthenticationPrincipal UserEntity userEntity) throws FailedToSendEmailException, InvalidTokenException, ResourceNotFoundException {
+    public ResponseEntity<UserDTO> confirmChangePassword(@RequestBody @Valid ConfirmChangePasswordDTO confirmChangePasswordDTO, @AuthenticationPrincipal UserEntity userEntity) throws FailedToSendNotificationException, InvalidTokenException, ResourceNotFoundException {
         confirmChangePasswordInteractor.confirmChangePassword(confirmChangePasswordDTO.token(), confirmChangePasswordDTO.newPassword());
         return ResponseEntity.ok().build();
     }

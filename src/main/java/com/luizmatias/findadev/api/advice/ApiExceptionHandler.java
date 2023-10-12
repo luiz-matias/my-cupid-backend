@@ -43,8 +43,8 @@ public class ApiExceptionHandler {
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(FailedToSendEmailException.class)
-    public ApiErrorResponseDTO handleFailedToSendEmail(FailedToSendEmailException ex) {
+    @ExceptionHandler(FailedToSendNotificationException.class)
+    public ApiErrorResponseDTO handleFailedToSendEmail(FailedToSendNotificationException ex) {
         return new ApiErrorResponseDTO(
                 new Date(),
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),

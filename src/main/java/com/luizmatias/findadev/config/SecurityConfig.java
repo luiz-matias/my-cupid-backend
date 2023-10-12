@@ -7,7 +7,7 @@ import com.luizmatias.findadev.api.security.SecurityFilter;
 import com.luizmatias.findadev.db.repositories.UserTemporaryTokenDatabaseRepository;
 import com.luizmatias.findadev.db.repositories.UserTemporaryTokenJpaRepository;
 import com.luizmatias.findadev.domain.entities.UserRole;
-import com.luizmatias.findadev.domain.repositories.EmailSenderRepository;
+import com.luizmatias.findadev.domain.repositories.NotificationSenderRepository;
 import com.luizmatias.findadev.domain.repositories.RandomGenerator;
 import com.luizmatias.findadev.domain.repositories.UserRepository;
 import com.luizmatias.findadev.domain.repositories.UserTemporaryTokenRepository;
@@ -95,13 +95,13 @@ public class SecurityConfig {
     }
 
     @Bean
-    RequestResetPasswordInteractor requestResetPasswordInteractor(UserRepository userRepository, VerifyUserTemporaryTokenInteractor verifyUserTemporaryTokenInteractor, EmailSenderRepository emailSenderRepository, com.luizmatias.findadev.domain.repositories.PasswordEncoder passwordEncoder) {
-        return new RequestResetPasswordInteractor(userRepository, verifyUserTemporaryTokenInteractor, emailSenderRepository, passwordEncoder);
+    RequestResetPasswordInteractor requestResetPasswordInteractor(UserRepository userRepository, VerifyUserTemporaryTokenInteractor verifyUserTemporaryTokenInteractor, NotificationSenderRepository notificationSenderRepository, com.luizmatias.findadev.domain.repositories.PasswordEncoder passwordEncoder) {
+        return new RequestResetPasswordInteractor(userRepository, verifyUserTemporaryTokenInteractor, notificationSenderRepository, passwordEncoder);
     }
 
     @Bean
-    ResetPasswordInteractor resetPasswordInteractor(UserRepository userRepository, CreateUserTemporaryTokenInteractor createUserTemporaryTokenInteractor, EmailSenderRepository emailSenderRepository) {
-        return new ResetPasswordInteractor(userRepository, createUserTemporaryTokenInteractor, emailSenderRepository);
+    ResetPasswordInteractor resetPasswordInteractor(UserRepository userRepository, CreateUserTemporaryTokenInteractor createUserTemporaryTokenInteractor, NotificationSenderRepository notificationSenderRepository) {
+        return new ResetPasswordInteractor(userRepository, createUserTemporaryTokenInteractor, notificationSenderRepository);
     }
 
 }

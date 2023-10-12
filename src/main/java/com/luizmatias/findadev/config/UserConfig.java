@@ -2,7 +2,7 @@ package com.luizmatias.findadev.config;
 
 import com.luizmatias.findadev.db.repositories.UserDatabaseRepository;
 import com.luizmatias.findadev.db.repositories.UserJpaRepository;
-import com.luizmatias.findadev.domain.repositories.EmailSenderRepository;
+import com.luizmatias.findadev.domain.repositories.NotificationSenderRepository;
 import com.luizmatias.findadev.domain.repositories.PasswordEncoder;
 import com.luizmatias.findadev.domain.repositories.UserRepository;
 import com.luizmatias.findadev.domain.usecases.auth.ActivateUserInteractor;
@@ -16,8 +16,8 @@ import org.springframework.context.annotation.Configuration;
 public class UserConfig {
 
     @Bean
-    CreateUserInteractor createUserInteractor(UserRepository userRepository, PasswordEncoder passwordEncoder, CreateUserTemporaryTokenInteractor createUserTemporaryTokenInteractor, EmailSenderRepository emailSenderRepository) {
-        return new CreateUserInteractor(userRepository, passwordEncoder, createUserTemporaryTokenInteractor, emailSenderRepository);
+    CreateUserInteractor createUserInteractor(UserRepository userRepository, PasswordEncoder passwordEncoder, CreateUserTemporaryTokenInteractor createUserTemporaryTokenInteractor, NotificationSenderRepository notificationSenderRepository) {
+        return new CreateUserInteractor(userRepository, passwordEncoder, createUserTemporaryTokenInteractor, notificationSenderRepository);
     }
 
     @Bean
@@ -51,8 +51,8 @@ public class UserConfig {
     }
 
     @Bean
-    ChangePasswordInteractor changePasswordInteractor(CreateUserTemporaryTokenInteractor createUserTemporaryTokenInteractor, EmailSenderRepository emailSenderRepository, PasswordEncoder passwordEncoder) {
-        return new ChangePasswordInteractor(createUserTemporaryTokenInteractor, emailSenderRepository, passwordEncoder);
+    ChangePasswordInteractor changePasswordInteractor(CreateUserTemporaryTokenInteractor createUserTemporaryTokenInteractor, NotificationSenderRepository notificationSenderRepository, PasswordEncoder passwordEncoder) {
+        return new ChangePasswordInteractor(createUserTemporaryTokenInteractor, notificationSenderRepository, passwordEncoder);
     }
 
     @Bean
@@ -61,8 +61,8 @@ public class UserConfig {
     }
 
     @Bean
-    ChangeUserPasswordInteractor changeUserPasswordInteractor(UserRepository userRepository, PasswordEncoder passwordEncoder, EmailSenderRepository emailSenderRepository) {
-        return new ChangeUserPasswordInteractor(userRepository, passwordEncoder, emailSenderRepository);
+    ChangeUserPasswordInteractor changeUserPasswordInteractor(UserRepository userRepository, PasswordEncoder passwordEncoder, NotificationSenderRepository notificationSenderRepository) {
+        return new ChangeUserPasswordInteractor(userRepository, passwordEncoder, notificationSenderRepository);
     }
 
 }
