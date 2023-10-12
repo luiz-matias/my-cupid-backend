@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface MessageJpaRepository extends JpaRepository<MessageEntity, Long> {
 
-    @Query("SELECT m FROM MessageEntity m WHERE m.chatEntity.id = :id ORDER BY m.sentAt ASC")
+    @Query("SELECT m FROM MessageEntity m WHERE m.chatEntity.id = :id")
     Page<MessageEntity> findByChatId(@Param("id") Long chatId, Pageable pageable);
 
 }

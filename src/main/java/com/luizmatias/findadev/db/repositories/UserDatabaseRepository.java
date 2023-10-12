@@ -1,14 +1,15 @@
 package com.luizmatias.findadev.db.repositories;
 
-import com.luizmatias.findadev.db.models.UserEntity;
 import com.luizmatias.findadev.api.dtos.mappers.pagination.PageMapper;
+import com.luizmatias.findadev.db.models.UserEntity;
 import com.luizmatias.findadev.db.models.mappers.UserEntityMapper;
+import com.luizmatias.findadev.domain.entities.User;
 import com.luizmatias.findadev.domain.entities.pagination.PageRequest;
 import com.luizmatias.findadev.domain.entities.pagination.PageResponse;
-import com.luizmatias.findadev.domain.entities.User;
 import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
 import com.luizmatias.findadev.domain.repositories.UserRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Sort;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -32,7 +33,7 @@ public class UserDatabaseRepository implements UserRepository {
     public PageResponse<User> getAllUsers(PageRequest pageRequest) {
         return PageMapper.toPageResponse(
                 userJpaRepository
-                        .findAll(PageMapper.toJpaPageRequest(pageRequest))
+                        .findAll(PageMapper.toJpaPageRequest(pageRequest).withSort(Sort.by(Sort.Direction.DESC, "id")))
                         .map(UserEntityMapper::toUser)
         );
     }
