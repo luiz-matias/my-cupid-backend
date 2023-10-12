@@ -1,11 +1,9 @@
 package com.luizmatias.findadev.domain.repositories;
 
-import com.luizmatias.findadev.domain.entities.Chat;
-import com.luizmatias.findadev.domain.entities.Message;
-import com.luizmatias.findadev.domain.entities.User;
+import com.luizmatias.findadev.domain.entities.*;
+import com.luizmatias.findadev.domain.entities.pagination.PageRequest;
+import com.luizmatias.findadev.domain.entities.pagination.PageResponse;
 import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
-
-import java.util.List;
 
 public interface ChatRepository {
 
@@ -37,16 +35,16 @@ public interface ChatRepository {
      * Gets the list of chats for a given user
      *
      * @param user the user to get chats
-     * @return list of chats for the given user
+     * @return paginated response of chats for the given user
      */
-    List<Chat> getUserChats(User user);
+    PageResponse<Chat> getUserChats(User user, PageRequest pageRequest);
 
     /**
      * Gets the list of messages for a given chat
      *
      * @param chat the chat to get messages
-     * @return list of messages for the given chat
+     * @return paginated response of messages for the given chat
      */
-    List<Message> getChatMessages(Chat chat);
+    PageResponse<Message> getChatMessages(Chat chat, PageRequest pageRequest);
 
 }

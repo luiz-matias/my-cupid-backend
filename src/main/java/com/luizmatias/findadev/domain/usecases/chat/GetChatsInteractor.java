@@ -1,12 +1,10 @@
 package com.luizmatias.findadev.domain.usecases.chat;
 
 import com.luizmatias.findadev.domain.entities.Chat;
+import com.luizmatias.findadev.domain.entities.pagination.PageRequest;
+import com.luizmatias.findadev.domain.entities.pagination.PageResponse;
 import com.luizmatias.findadev.domain.entities.User;
-import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
 import com.luizmatias.findadev.domain.repositories.ChatRepository;
-import com.luizmatias.findadev.domain.repositories.UserRepository;
-
-import java.util.List;
 
 public class GetChatsInteractor {
 
@@ -17,8 +15,8 @@ public class GetChatsInteractor {
     }
 
 
-    public List<Chat> getChats(User user) {
-        return chatRepository.getUserChats(user);
+    public PageResponse<Chat> getChats(User user, PageRequest pageRequest) {
+        return chatRepository.getUserChats(user, pageRequest);
     }
 
 }

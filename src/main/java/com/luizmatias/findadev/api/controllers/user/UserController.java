@@ -2,6 +2,9 @@ package com.luizmatias.findadev.api.controllers.user;
 
 import com.luizmatias.findadev.api.dtos.mappers.ChatDTOMapper;
 import com.luizmatias.findadev.api.dtos.mappers.UserDTOMapper;
+import com.luizmatias.findadev.api.dtos.mappers.pagination.PageMapper;
+import com.luizmatias.findadev.api.dtos.mappers.pagination.PageRequestDTO;
+import com.luizmatias.findadev.api.dtos.mappers.pagination.PageResponseDTO;
 import com.luizmatias.findadev.api.dtos.requests.ChangePasswordDTO;
 import com.luizmatias.findadev.api.dtos.requests.ConfirmChangePasswordDTO;
 import com.luizmatias.findadev.api.dtos.requests.UpdateUserDTO;
@@ -23,8 +26,6 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(UserController.USERS_PATH)
@@ -78,8 +79,12 @@ public class UserController {
     }
 
     @GetMapping(path = "/chat")
-    public ResponseEntity<List<ChatDTO>> getUserChats(@AuthenticationPrincipal UserEntity userEntity) {
-        return ResponseEntity.ok(getChatsInteractor.getChats(userEntity.toUser()).stream().map(ChatDTOMapper::toChatDTO).toList());
+    public ResponseEntity<PageResponseDTO<ChatDTO>> getUserChats(@AuthenticationPrincipal UserEntity userEntity, @Valid PageRequestDTO pageRequestDTO) {
+        PageResponseDTO<ChatDTO> chats = PageMapper.toPageResponseDTO(
+                getChatsInteractor.getChats(userEntity.toUser(), PageMapper.toPageRequest(pageRequestDTO)),
+                ChatDTOMapper::toChatDTO
+        );
+        return ResponseEntity.ok(chats);
     }
 
 }

@@ -1,9 +1,10 @@
 package com.luizmatias.findadev.domain.repositories;
 
+import com.luizmatias.findadev.domain.entities.pagination.PageRequest;
+import com.luizmatias.findadev.domain.entities.pagination.PageResponse;
 import com.luizmatias.findadev.domain.entities.User;
 import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository {
@@ -19,9 +20,9 @@ public interface UserRepository {
     /**
      * Gets all users
      *
-     * @return list of users
+     * @return paginated response of users
      */
-    List<User> getAllUsers();
+    PageResponse<User> getAllUsers(PageRequest pageRequest);
 
     /**
      * Gets a specific user filtering by id
