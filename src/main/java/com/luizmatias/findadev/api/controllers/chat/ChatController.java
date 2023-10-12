@@ -2,6 +2,9 @@ package com.luizmatias.findadev.api.controllers.chat;
 
 import com.luizmatias.findadev.api.controllers.user.UserController;
 import com.luizmatias.findadev.api.dtos.mappers.MessageDTOMapper;
+import com.luizmatias.findadev.api.dtos.mappers.pagination.PageMapper;
+import com.luizmatias.findadev.api.dtos.mappers.pagination.PageRequestDTO;
+import com.luizmatias.findadev.api.dtos.mappers.pagination.PageResponseDTO;
 import com.luizmatias.findadev.api.dtos.requests.SendMessageDTO;
 import com.luizmatias.findadev.api.dtos.responses.MessageDTO;
 import com.luizmatias.findadev.db.models.UserEntity;
@@ -17,8 +20,6 @@ import org.hibernate.validator.constraints.Range;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(ChatController.CHATS_PATH)
@@ -47,8 +48,11 @@ public class ChatController {
     }
 
     @GetMapping(path = "/{chatId}")
-    public ResponseEntity<List<MessageDTO>> getMessages(@PathVariable("chatId") @NotNull @Range(min = 1) Long chatId, @AuthenticationPrincipal UserEntity userEntity) throws ResourceNotFoundException {
-        return ResponseEntity.ok(getMessagesInteractor.getMessages(chatId).stream().map(MessageDTOMapper::toMessageDTO).toList());
+    public ResponseEntity<PageResponseDTO<MessageDTO>> getMessages(@PathVariable("chatId") @NotNull @Range(min = 1) Long chatId, @AuthenticationPrincipal UserEntity userEntity, @Valid PageRequestDTO pageRequestDTO) throws ResourceNotFoundException {
+        PageResponseDTO<MessageDTO> messages = PageMapper.toPageResponseDTO(
+                getMessagesInteractor.getMessages(chatId, PageMapper.toPageRequest(pageRequestDTO)), MessageDTOMapper::toMessageDTO
+        );
+        return ResponseEntity.ok(messages);
     }
 
 }

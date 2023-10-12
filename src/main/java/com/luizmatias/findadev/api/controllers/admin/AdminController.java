@@ -1,11 +1,15 @@
 package com.luizmatias.findadev.api.controllers.admin;
 
 import com.luizmatias.findadev.api.dtos.mappers.UserDTOMapper;
+import com.luizmatias.findadev.api.dtos.mappers.pagination.PageMapper;
+import com.luizmatias.findadev.api.dtos.mappers.pagination.PageRequestDTO;
+import com.luizmatias.findadev.api.dtos.mappers.pagination.PageResponseDTO;
 import com.luizmatias.findadev.api.dtos.responses.UserDTO;
 import com.luizmatias.findadev.domain.entities.User;
 import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
 import com.luizmatias.findadev.domain.usecases.user.GetAllUsersInteractor;
 import com.luizmatias.findadev.domain.usecases.user.GetUserInteractor;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -14,8 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(AdminController.ADMIN_PATH)
@@ -35,8 +37,10 @@ public class AdminController {
     }
 
     @GetMapping(path = {"/users", "/users/"})
-    public ResponseEntity<List<UserDTO>> getAllUsers() {
-        List<UserDTO> users = getAllUsersInteractor.getAllUsers().stream().map(UserDTOMapper::toUserDTO).toList();
+    public ResponseEntity<PageResponseDTO<UserDTO>> getAllUsers(@Valid PageRequestDTO pageRequestDTO) {
+        PageResponseDTO<UserDTO> users = PageMapper.toPageResponseDTO(
+                getAllUsersInteractor.getAllUsers(PageMapper.toPageRequest(pageRequestDTO)), UserDTOMapper::toUserDTO
+        );
         return ResponseEntity.ok(users);
     }
 
