@@ -6,6 +6,7 @@ import com.luizmatias.findadev.api.dtos.requests.RemoveLikeDTO;
 import com.luizmatias.findadev.api.dtos.responses.RegisterLikeResponseDTO;
 import com.luizmatias.findadev.db.models.UserEntity;
 import com.luizmatias.findadev.domain.entities.Match;
+import com.luizmatias.findadev.domain.exceptions.FailedToSendNotificationException;
 import com.luizmatias.findadev.domain.exceptions.LikeOnSameUserException;
 import com.luizmatias.findadev.domain.exceptions.LikeOnSameUserTypeException;
 import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
@@ -35,7 +36,7 @@ public class LikeController {
 
     @Transactional
     @PostMapping(path = {"", "/"})
-    public ResponseEntity<RegisterLikeResponseDTO> registerLike(@RequestBody @Valid RegisterLikeDTO registerLikeDTO, @AuthenticationPrincipal UserEntity userEntity) throws ResourceNotFoundException, LikeOnSameUserException, LikeOnSameUserTypeException {
+    public ResponseEntity<RegisterLikeResponseDTO> registerLike(@RequestBody @Valid RegisterLikeDTO registerLikeDTO, @AuthenticationPrincipal UserEntity userEntity) throws ResourceNotFoundException, LikeOnSameUserException, LikeOnSameUserTypeException, FailedToSendNotificationException {
         Optional<Match> match = registerLikeInteractor.registerLike(userEntity.toUser(), registerLikeDTO.toId());
         return ResponseEntity.ok(new RegisterLikeResponseDTO(
                 match.isPresent(),

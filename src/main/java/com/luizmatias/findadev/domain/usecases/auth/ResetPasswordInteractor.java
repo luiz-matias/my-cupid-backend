@@ -3,9 +3,9 @@ package com.luizmatias.findadev.domain.usecases.auth;
 import com.luizmatias.findadev.domain.entities.TokenType;
 import com.luizmatias.findadev.domain.entities.User;
 import com.luizmatias.findadev.domain.entities.UserTemporaryToken;
-import com.luizmatias.findadev.domain.exceptions.FailedToSendEmailException;
+import com.luizmatias.findadev.domain.exceptions.FailedToSendNotificationException;
 import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
-import com.luizmatias.findadev.domain.repositories.EmailSenderRepository;
+import com.luizmatias.findadev.domain.repositories.NotificationSenderRepository;
 import com.luizmatias.findadev.domain.repositories.UserRepository;
 
 import java.util.Optional;
@@ -14,15 +14,15 @@ public class ResetPasswordInteractor {
 
     private final UserRepository userRepository;
     private final CreateUserTemporaryTokenInteractor createUserTemporaryTokenInteractor;
-    private final EmailSenderRepository emailSenderRepository;
+    private final NotificationSenderRepository notificationSenderRepository;
 
-    public ResetPasswordInteractor(UserRepository userRepository, CreateUserTemporaryTokenInteractor createUserTemporaryTokenInteractor, EmailSenderRepository emailSenderRepository) {
+    public ResetPasswordInteractor(UserRepository userRepository, CreateUserTemporaryTokenInteractor createUserTemporaryTokenInteractor, NotificationSenderRepository notificationSenderRepository) {
         this.userRepository = userRepository;
         this.createUserTemporaryTokenInteractor = createUserTemporaryTokenInteractor;
-        this.emailSenderRepository = emailSenderRepository;
+        this.notificationSenderRepository = notificationSenderRepository;
     }
 
-    public void resetPassword(String email) throws ResourceNotFoundException, FailedToSendEmailException {
+    public void resetPassword(String email) throws ResourceNotFoundException, FailedToSendNotificationException {
         Optional<User> userOptional = userRepository.getUserByEmail(email);
 
         if (userOptional.isEmpty()) {
@@ -33,7 +33,7 @@ public class ResetPasswordInteractor {
 
         UserTemporaryToken userTemporaryToken = createUserTemporaryTokenInteractor.createToken(user, TokenType.RECOVER_PASSWORD);
 
-        emailSenderRepository.sendPasswordRecoveryEmail(
+        notificationSenderRepository.sendPasswordRecovery(
                 userTemporaryToken.getToken(),
                 user.getEmail(),
                 user.getFirstName()
