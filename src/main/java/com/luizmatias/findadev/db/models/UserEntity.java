@@ -71,6 +71,13 @@ public class UserEntity implements UserDetails {
     private List<MatchEntity> matchesAsDeveloper;
     @OneToMany(mappedBy = "userEntity", cascade = CascadeType.ALL)
     private List<UserTemporaryTokenEntity> passwordTokenEntities;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_interests",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "interest_id")
+    )
+    private List<InterestEntity> interestEntities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
