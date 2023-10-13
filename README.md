@@ -119,7 +119,7 @@ Spring Boot is an opinionated extension from Spring that allows us to develop ba
   - [X] Password change
   - [X] Password recovery
   - [X] Password changed confirmation
-  - [ ] Match notification
+  - [X] Match notification
 - [X] Listing basics
   - [X] Pagination
   - [X] Sorting

@@ -1,7 +1,7 @@
 package com.luizmatias.findadev.config;
 
-import com.luizmatias.findadev.domain.repositories.EmailSenderRepository;
-import com.luizmatias.findadev.email.SendGridEmailSender;
+import com.luizmatias.findadev.domain.repositories.NotificationSenderRepository;
+import com.luizmatias.findadev.email.SendGridNotificationSender;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
 public class EmailConfig {
 
     @Bean
-    EmailSenderRepository emailSenderRepository() {
-        return new SendGridEmailSender();
+    NotificationSenderRepository emailSenderRepository() {
+        return new SendGridNotificationSender();
     }
 
 }

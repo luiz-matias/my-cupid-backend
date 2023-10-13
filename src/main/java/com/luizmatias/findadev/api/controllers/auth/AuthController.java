@@ -76,7 +76,7 @@ public class AuthController {
 
     @Transactional
     @PostMapping(path = "/register")
-    public ResponseEntity<UserDTO> registerUser(@RequestBody @Valid RegisterUserDTO registerUserDTO) throws ResourceAlreadyExistsException, FailedToSendEmailException {
+    public ResponseEntity<UserDTO> registerUser(@RequestBody @Valid RegisterUserDTO registerUserDTO) throws ResourceAlreadyExistsException, FailedToSendNotificationException {
         User user = registerUserDTO.toUser();
         user = createUserInteractor.createUser(user);
         URI uri = UriComponentsBuilder.newInstance().path("{path}/{id}").buildAndExpand(UserController.USERS_PATH, user.getId()).toUri();
@@ -91,7 +91,7 @@ public class AuthController {
     }
 
     @PostMapping(path = "/reset-password")
-    public ResponseEntity<TokenResponseDTO> resetPassword(@RequestBody @Valid ResetPasswordDTO resetPasswordDTO) throws FailedToSendEmailException {
+    public ResponseEntity<TokenResponseDTO> resetPassword(@RequestBody @Valid ResetPasswordDTO resetPasswordDTO) throws FailedToSendNotificationException {
         try {
             resetPasswordInteractor.resetPassword(resetPasswordDTO.email());
         } catch (ResourceNotFoundException e) {
@@ -101,7 +101,7 @@ public class AuthController {
     }
 
     @PostMapping(path = "/request-reset-password")
-    public ResponseEntity<UserDTO> requestResetPassword(@RequestBody @Valid RequestResetPasswordDTO requestResetPasswordDTO) throws InvalidTokenException, ResourceNotFoundException, FailedToSendEmailException {
+    public ResponseEntity<UserDTO> requestResetPassword(@RequestBody @Valid RequestResetPasswordDTO requestResetPasswordDTO) throws InvalidTokenException, ResourceNotFoundException, FailedToSendNotificationException {
         User user = requestResetPasswordInteractor.requestResetPassword(requestResetPasswordDTO.token(), requestResetPasswordDTO.password());
         return ResponseEntity.ok(UserDTOMapper.toUserDTO(user));
     }

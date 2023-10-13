@@ -3,9 +3,9 @@ package com.luizmatias.findadev.domain.usecases.user;
 import com.luizmatias.findadev.domain.entities.TokenType;
 import com.luizmatias.findadev.domain.entities.User;
 import com.luizmatias.findadev.domain.entities.UserTemporaryToken;
-import com.luizmatias.findadev.domain.exceptions.FailedToSendEmailException;
+import com.luizmatias.findadev.domain.exceptions.FailedToSendNotificationException;
 import com.luizmatias.findadev.domain.exceptions.ResourceAlreadyExistsException;
-import com.luizmatias.findadev.domain.repositories.EmailSenderRepository;
+import com.luizmatias.findadev.domain.repositories.NotificationSenderRepository;
 import com.luizmatias.findadev.domain.repositories.PasswordEncoder;
 import com.luizmatias.findadev.domain.repositories.UserRepository;
 import com.luizmatias.findadev.domain.usecases.auth.CreateUserTemporaryTokenInteractor;
@@ -15,17 +15,17 @@ public class CreateUserInteractor {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final CreateUserTemporaryTokenInteractor createUserTemporaryTokenInteractor;
-    private final EmailSenderRepository emailSenderRepository;
+    private final NotificationSenderRepository notificationSenderRepository;
 
-    public CreateUserInteractor(UserRepository userRepository, PasswordEncoder passwordEncoder, CreateUserTemporaryTokenInteractor createUserTemporaryTokenInteractor, EmailSenderRepository emailSenderRepository) {
+    public CreateUserInteractor(UserRepository userRepository, PasswordEncoder passwordEncoder, CreateUserTemporaryTokenInteractor createUserTemporaryTokenInteractor, NotificationSenderRepository notificationSenderRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.createUserTemporaryTokenInteractor = createUserTemporaryTokenInteractor;
-        this.emailSenderRepository = emailSenderRepository;
+        this.notificationSenderRepository = notificationSenderRepository;
     }
 
 
-    public User createUser(User user) throws ResourceAlreadyExistsException, FailedToSendEmailException {
+    public User createUser(User user) throws ResourceAlreadyExistsException, FailedToSendNotificationException {
         if (userRepository.getUserByEmail(user.getEmail()).isPresent()) {
             throw new ResourceAlreadyExistsException("User with its email already exists");
         }
@@ -36,7 +36,7 @@ public class CreateUserInteractor {
 
         UserTemporaryToken userTemporaryToken = createUserTemporaryTokenInteractor.createToken(user, TokenType.ACTIVATE_ACCOUNT);
 
-        emailSenderRepository.sendVerifyAccountEmail(userTemporaryToken.getToken(), user.getEmail(), user.getFirstName());
+        notificationSenderRepository.sendVerifyAccount(userTemporaryToken.getToken(), user.getEmail(), user.getFirstName());
 
         return user;
     }

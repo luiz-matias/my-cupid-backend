@@ -59,14 +59,14 @@ public class UserController {
 
     @Transactional
     @PutMapping(path = "/password")
-    public ResponseEntity<UserDTO> changePassword(@RequestBody @Valid ChangePasswordDTO changePasswordDTO, @AuthenticationPrincipal UserEntity userEntity) throws PasswordMismatchException, FailedToSendEmailException {
+    public ResponseEntity<UserDTO> changePassword(@RequestBody @Valid ChangePasswordDTO changePasswordDTO, @AuthenticationPrincipal UserEntity userEntity) throws PasswordMismatchException, FailedToSendNotificationException {
         changePasswordInteractor.changePassword(userEntity.toUser(), changePasswordDTO.oldPassword());
         return ResponseEntity.ok().build();
     }
 
     @Transactional
     @PutMapping(path = "/password-confirmation")
-    public ResponseEntity<UserDTO> confirmChangePassword(@RequestBody @Valid ConfirmChangePasswordDTO confirmChangePasswordDTO, @AuthenticationPrincipal UserEntity userEntity) throws FailedToSendEmailException, InvalidTokenException, ResourceNotFoundException {
+    public ResponseEntity<UserDTO> confirmChangePassword(@RequestBody @Valid ConfirmChangePasswordDTO confirmChangePasswordDTO, @AuthenticationPrincipal UserEntity userEntity) throws FailedToSendNotificationException, InvalidTokenException, ResourceNotFoundException {
         confirmChangePasswordInteractor.confirmChangePassword(confirmChangePasswordDTO.token(), confirmChangePasswordDTO.newPassword());
         return ResponseEntity.ok().build();
     }
