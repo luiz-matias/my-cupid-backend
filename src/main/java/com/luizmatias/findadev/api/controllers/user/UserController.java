@@ -8,19 +8,14 @@ import com.luizmatias.findadev.api.dtos.mappers.pagination.PageResponseDTO;
 import com.luizmatias.findadev.api.dtos.requests.ChangePasswordDTO;
 import com.luizmatias.findadev.api.dtos.requests.ConfirmChangePasswordDTO;
 import com.luizmatias.findadev.api.dtos.requests.UpdateUserDTO;
+import com.luizmatias.findadev.api.dtos.requests.UserInterestDTO;
 import com.luizmatias.findadev.api.dtos.responses.ChatDTO;
 import com.luizmatias.findadev.api.dtos.responses.UserDTO;
 import com.luizmatias.findadev.db.models.UserEntity;
 import com.luizmatias.findadev.domain.entities.User;
-import com.luizmatias.findadev.domain.exceptions.FailedToSendEmailException;
-import com.luizmatias.findadev.domain.exceptions.InvalidTokenException;
-import com.luizmatias.findadev.domain.exceptions.PasswordMismatchException;
-import com.luizmatias.findadev.domain.exceptions.ResourceNotFoundException;
+import com.luizmatias.findadev.domain.exceptions.*;
 import com.luizmatias.findadev.domain.usecases.chat.GetChatsInteractor;
-import com.luizmatias.findadev.domain.usecases.user.ChangePasswordInteractor;
-import com.luizmatias.findadev.domain.usecases.user.ConfirmChangePasswordInteractor;
-import com.luizmatias.findadev.domain.usecases.user.DeleteUserInteractor;
-import com.luizmatias.findadev.domain.usecases.user.UpdateUserInteractor;
+import com.luizmatias.findadev.domain.usecases.user.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -38,16 +33,20 @@ public class UserController {
     private final ConfirmChangePasswordInteractor confirmChangePasswordInteractor;
     private final DeleteUserInteractor deleteUserInteractor;
     private final GetChatsInteractor getChatsInteractor;
+    private final AddUserInterestInteractor addUserInterestInteractor;
+    private final RemoveUserInterestInteractor removeUserInterestInteractor;
 
     public UserController(UpdateUserInteractor updateUserInteractor,
                           ChangePasswordInteractor changePasswordInteractor, ConfirmChangePasswordInteractor confirmChangePasswordInteractor, DeleteUserInteractor deleteUserInteractor,
-                          GetChatsInteractor getChatsInteractor
-    ) {
+                          GetChatsInteractor getChatsInteractor,
+                          AddUserInterestInteractor addUserInterestInteractor, RemoveUserInterestInteractor removeUserInterestInteractor) {
         this.updateUserInteractor = updateUserInteractor;
         this.changePasswordInteractor = changePasswordInteractor;
         this.confirmChangePasswordInteractor = confirmChangePasswordInteractor;
         this.deleteUserInteractor = deleteUserInteractor;
         this.getChatsInteractor = getChatsInteractor;
+        this.addUserInterestInteractor = addUserInterestInteractor;
+        this.removeUserInterestInteractor = removeUserInterestInteractor;
     }
 
     @Transactional
@@ -85,6 +84,20 @@ public class UserController {
                 ChatDTOMapper::toChatDTO
         );
         return ResponseEntity.ok(chats);
+    }
+
+    @Transactional
+    @PostMapping(path = "/interest")
+    public ResponseEntity<UserDTO> addUserInterest(@AuthenticationPrincipal UserEntity userEntity, @RequestBody @Valid UserInterestDTO userInterestDTO) throws ResourceNotFoundException, ResourceAlreadyExistsException {
+        User user = addUserInterestInteractor.addUserInterest(userEntity.toUser(), userInterestDTO.interestId());
+        return ResponseEntity.ok(UserDTOMapper.toUserDTO(user));
+    }
+
+    @Transactional
+    @DeleteMapping(path = "/interest")
+    public ResponseEntity<UserDTO> deleteUserInterest(@AuthenticationPrincipal UserEntity userEntity, @RequestBody @Valid UserInterestDTO userInterestDTO) throws ResourceNotFoundException {
+        User user = removeUserInterestInteractor.removeUserInterest(userEntity.toUser(), userInterestDTO.interestId());
+        return ResponseEntity.ok(UserDTOMapper.toUserDTO(user));
     }
 
 }
