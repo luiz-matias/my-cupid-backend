@@ -23,7 +23,8 @@ public class UserDTOMapper {
                 userDTO.likedByUsers().stream().map(UserDTOMapper::toUserWithoutLikesAndMatches).toList(),
                 userDTO.matchesAsClient().stream().map(MatchDTOMapper::toMatch).toList(),
                 userDTO.matchesAsDeveloper().stream().map(MatchDTOMapper::toMatch).toList(),
-                null
+                null,
+                userDTO.interests().stream().map(InterestDTOMapper::toInterest).toList()
         );
     }
 
@@ -43,7 +44,8 @@ public class UserDTOMapper {
                 user.getLikedUsers().stream().map(UserDTOMapper::toUserDTOWithoutLikesAndMatches).toList(),
                 user.getLikedByUsers().stream().map(UserDTOMapper::toUserDTOWithoutLikesAndMatches).toList(),
                 user.getMatchesAsClient().stream().map(MatchDTOMapper::toMatchDTO).toList(),
-                user.getMatchesAsDeveloper().stream().map(MatchDTOMapper::toMatchDTO).toList()
+                user.getMatchesAsDeveloper().stream().map(MatchDTOMapper::toMatchDTO).toList(),
+                user.getInterests().stream().map(InterestDTOMapper::toInterestDTO).toList()
         );
     }
 
@@ -65,7 +67,8 @@ public class UserDTOMapper {
                 null,
                 null,
                 null,
-                null
+                null,
+                userDTO.interests().stream().map(InterestDTOMapper::toInterest).toList()
         );
     }
 
@@ -85,7 +88,8 @@ public class UserDTOMapper {
                 null,
                 null,
                 null,
-                null
+                null,
+                user.getInterests().stream().map(InterestDTOMapper::toInterestDTO).toList()
         );
     }
 

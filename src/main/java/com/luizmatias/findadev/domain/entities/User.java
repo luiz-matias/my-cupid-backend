@@ -21,11 +21,12 @@ public class User {
     private List<Match> matchesAsClient;
     private List<Match> matchesAsDeveloper;
     private List<UserTemporaryToken> userTemporaryTokens;
+    private List<Interest> interests;
 
     public User() {
     }
 
-    public User(Long id, String firstName, String lastName, String bio, Date birth, String email, String password, UserType userType, UserRole userRole, Double latitude, Double longitude, Boolean isEmailVerified, List<User> likedUsers, List<User> likedByUsers, List<Match> matchesAsClient, List<Match> matchesAsDeveloper, List<UserTemporaryToken> userTemporaryTokens) {
+    public User(Long id, String firstName, String lastName, String bio, Date birth, String email, String password, UserType userType, UserRole userRole, Double latitude, Double longitude, Boolean isEmailVerified, List<User> likedUsers, List<User> likedByUsers, List<Match> matchesAsClient, List<Match> matchesAsDeveloper, List<UserTemporaryToken> userTemporaryTokens, List<Interest> interests) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -43,6 +44,7 @@ public class User {
         this.matchesAsClient = matchesAsClient;
         this.matchesAsDeveloper = matchesAsDeveloper;
         this.userTemporaryTokens = userTemporaryTokens;
+        this.interests = interests;
     }
 
     public Long getId() {
@@ -179,5 +181,17 @@ public class User {
 
     public void setUserTemporaryTokens(List<UserTemporaryToken> userTemporaryTokens) {
         this.userTemporaryTokens = userTemporaryTokens;
+    }
+
+    public Boolean getEmailVerified() {
+        return isEmailVerified;
+    }
+
+    public List<Interest> getInterests() {
+        return interests;
+    }
+
+    public void setInterests(List<Interest> interests) {
+        this.interests = interests;
     }
 }
