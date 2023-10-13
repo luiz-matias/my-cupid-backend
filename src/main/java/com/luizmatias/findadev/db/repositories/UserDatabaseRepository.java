@@ -90,6 +90,10 @@ public class UserDatabaseRepository implements UserRepository {
             userEntity.setLongitude(userEntityUpdated.getLongitude());
         }
 
+        if (userEntityUpdated.getInterestEntities() != null && !userEntityUpdated.getInterestEntities().isEmpty()) {
+            userEntity.setInterestEntities(new ArrayList<>(userEntityUpdated.getInterestEntities()));
+        }
+
         return UserEntityMapper.toUser(userJpaRepository.save(userEntity));
     }
 
