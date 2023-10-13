@@ -18,7 +18,8 @@ public record UserDTO(
         List<UserDTO> likedUsers,
         List<UserDTO> likedByUsers,
         List<MatchDTO> matchesAsClient,
-        List<MatchDTO> matchesAsDeveloper
+        List<MatchDTO> matchesAsDeveloper,
+        List<InterestDTO> interests
 ) {
 
 }

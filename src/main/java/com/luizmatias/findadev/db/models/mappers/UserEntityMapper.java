@@ -25,7 +25,8 @@ public class UserEntityMapper {
                 userEntity.getLikedByUserEntities().stream().map(UserEntityMapper::toUserWithoutLikesAndMatches).toList(),
                 userEntity.getMatchesAsClient().stream().map(MatchEntityMapper::toMatch).toList(),
                 userEntity.getMatchesAsDeveloper().stream().map(MatchEntityMapper::toMatch).toList(),
-                Collections.emptyList()
+                Collections.emptyList(),
+                userEntity.getInterestEntities().stream().map(InterestEntityMapper::toInterest).toList()
         );
     }
 
@@ -47,7 +48,8 @@ public class UserEntityMapper {
                 user.getLikedByUsers().stream().map(UserEntityMapper::toUserEntityWithoutLikesAndMatches).toList(),
                 user.getMatchesAsClient().stream().map(MatchEntityMapper::toMatchEntity).toList(),
                 user.getMatchesAsDeveloper().stream().map(MatchEntityMapper::toMatchEntity).toList(),
-                Collections.emptyList()
+                Collections.emptyList(),
+                user.getInterests().stream().map(InterestEntityMapper::toInterestEntity).toList()
         );
     }
 
@@ -69,7 +71,8 @@ public class UserEntityMapper {
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
-                Collections.emptyList()
+                Collections.emptyList(),
+                userEntity.getInterestEntities().stream().map(InterestEntityMapper::toInterest).toList()
         );
     }
 
@@ -91,7 +94,8 @@ public class UserEntityMapper {
                 Collections.emptyList(),
                 Collections.emptyList(),
                 Collections.emptyList(),
-                Collections.emptyList()
+                Collections.emptyList(),
+                user.getInterests().stream().map(InterestEntityMapper::toInterestEntity).toList()
         );
     }
 

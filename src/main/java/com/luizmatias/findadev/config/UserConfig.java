@@ -2,6 +2,7 @@ package com.luizmatias.findadev.config;
 
 import com.luizmatias.findadev.db.repositories.UserDatabaseRepository;
 import com.luizmatias.findadev.db.repositories.UserJpaRepository;
+import com.luizmatias.findadev.domain.repositories.InterestRepository;
 import com.luizmatias.findadev.domain.repositories.NotificationSenderRepository;
 import com.luizmatias.findadev.domain.repositories.PasswordEncoder;
 import com.luizmatias.findadev.domain.repositories.UserRepository;
@@ -65,4 +66,13 @@ public class UserConfig {
         return new ChangeUserPasswordInteractor(userRepository, passwordEncoder, notificationSenderRepository);
     }
 
+    @Bean
+    AddUserInterestInteractor addUserInterestInteractor(UserRepository userRepository, InterestRepository interestRepository) {
+        return new AddUserInterestInteractor(userRepository, interestRepository);
+    }
+
+    @Bean
+    RemoveUserInterestInteractor removeUserInterestInteractor(UserRepository userRepository) {
+        return new RemoveUserInterestInteractor(userRepository);
+    }
 }
