@@ -18,11 +18,11 @@ The application will have the following features:
 
 ### Login
 
-As a user, I want to be able to log in into the application, so I can access my account with safety.
+As a user, I want to be able to log in to the application to access my account safely.
 
 ### Registration
 
-As a user, I want to register my account into the application, so I can have access to the platform.
+As a user, I want to register my account into the application so that I can have access to the platform.
 
 ### Password Recovery
 
@@ -32,49 +32,43 @@ As a user, I want to be able to recover my password in case I missed it so that 
 
 ### Edit Profile
 
-As a user, I want to be able to edit my account information, so I can keep my profile updated.
+As a user, I want to edit my account information to keep my profile updated.
 
 ### Manage Interests
 
-As a user, I want to be able to add or remove interests from my account, so I can show to others my interests.
+As a user, I want to be able to add or remove interests from my account so that I can show others my interests.
 
 ### Manage Categories
 
-As a user, I want to be able to add or remove categories from my account, so I can show to others my categories.
+As a user, I want to be able to add or remove categories from my account so I can show others my categories.
 
 ### Manage photos
 
-As a user, I want to manage my profile photos, so other users can see me.
+As a user, I want to manage my profile photos so other users can see me.
 
 ### Change Password
 
-As a user, I want to be able to change my password, so I can protect my account whenever I need to.
+As a user, I want to change my password to protect my account whenever necessary.
 
 ### Delete Account
 
-As a user, I want to be able to delete my account, so I can remove all my sensitive data from the platform.
+As a user, I want to delete my account to remove all my sensitive data from the platform.
 
 ## Finding and Matching Users
 
-### List of Devs
+### List of Users
 
-As a client, I want to list all devs according to the needs of my project (filters to be defined).
-
-### List of Clients
-
-As a dev, I want to list all clients according to my formation, experience, and desired preferences (filters to be
-defined).
+As a user, I want to list all users according to my profile.
 
 ### Match
 
-As a user, when I give a like to another user and they like me as well, I want to match with that user so I can access
-their info.
+As a user, when I give a like to another user, and they like me as well, I want to match with that user.
 
 ## Messaging
 
-### Chat between Devs and Clients
+### Chat between Users
 
-As a user, I want to chat with another user about the project we will implement.
+As a user, I want to chat with another user.
 
 ## Admin Management
 
@@ -84,7 +78,11 @@ As an admin, I want to fetch a list of users of my platform.
 
 ### Manage Interests
 
-As an admin, I want to manage all the interests available in the platform.
+As an admin, I want to manage all the interests available on the platform.
+
+### Manage Categories
+
+As an admin, I want to manage all the categories available on the platform.
 ___
 
 # Main Tools
@@ -97,7 +95,7 @@ ___
 
 <br />
 
-Spring Boot is an opinionated extension from Spring that allows us to develop backend services in a fast-paced rhythm.
+Spring Boot is a framework extension from Spring, allowing us to develop backend services in a fast-paced rhythm.
 
 # Roadmap
 
@@ -115,21 +113,20 @@ Spring Boot is an opinionated extension from Spring that allows us to develop ba
 - [ ] Account Management
     - [ ] Edit Profile
       - [X] Interests
+      - [ ] Height
+      - [ ] Genre
+      - [ ] Photos
+      - [ ] Social links
       - [ ] Categories
-          - [ ] Genre
-          - [ ] Height
           - [ ] Intention
           - [ ] Formation
-          - [ ] Social links
-          - [ ] Photos
     - [X] Change Password
     - [X] Delete Account
 - [ ] Finding and Matching Users
-    - [ ] List of Devs
-    - [ ] List of Clients
+    - [ ] List of users
     - [X] Match
 - [X] Messaging
-    - [X] Chat between Devs and Clients
+    - [X] Chat between users
 
 ## Tech Features Wishlist
 
