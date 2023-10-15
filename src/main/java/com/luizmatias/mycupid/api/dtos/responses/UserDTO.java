@@ -11,7 +11,6 @@ public record UserDTO(
         Date birth,
         String email,
         String password,
-        String userType,
         String userRole,
         Double latitude,
         Double longitude,

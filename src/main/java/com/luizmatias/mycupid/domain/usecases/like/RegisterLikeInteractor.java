@@ -4,7 +4,6 @@ import com.luizmatias.mycupid.domain.entities.Match;
 import com.luizmatias.mycupid.domain.entities.User;
 import com.luizmatias.mycupid.domain.exceptions.FailedToSendNotificationException;
 import com.luizmatias.mycupid.domain.exceptions.LikeOnSameUserException;
-import com.luizmatias.mycupid.domain.exceptions.LikeOnSameUserTypeException;
 import com.luizmatias.mycupid.domain.exceptions.ResourceNotFoundException;
 import com.luizmatias.mycupid.domain.repositories.UserRepository;
 import com.luizmatias.mycupid.domain.usecases.match.CreateMatchInteractor;
@@ -23,16 +22,12 @@ public class RegisterLikeInteractor {
         this.createMatchInteractor = createMatchInteractor;
     }
 
-    public Optional<Match> registerLike(User userFrom, Long toId) throws ResourceNotFoundException, LikeOnSameUserException, LikeOnSameUserTypeException, FailedToSendNotificationException {
+    public Optional<Match> registerLike(User userFrom, Long toId) throws ResourceNotFoundException, LikeOnSameUserException, FailedToSendNotificationException {
         if (userFrom.getId().equals(toId)) {
             throw new LikeOnSameUserException("User can't like himself");
         }
 
         User userTo = userRepository.getUser(toId);
-
-        if (userFrom.getUserType() == userTo.getUserType()) {
-            throw new LikeOnSameUserTypeException("User can't like another user with same user type");
-        }
 
         Optional<Match> optionalMatch = Optional.empty();
         boolean isMatch = userTo.getLikedUsers().stream().anyMatch(user -> Objects.equals(user.getId(), userFrom.getId()));

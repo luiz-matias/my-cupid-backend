@@ -3,7 +3,6 @@ package com.luizmatias.mycupid.db.models;
 import com.luizmatias.mycupid.db.models.mappers.UserEntityMapper;
 import com.luizmatias.mycupid.domain.entities.User;
 import com.luizmatias.mycupid.domain.entities.UserRole;
-import com.luizmatias.mycupid.domain.entities.UserType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,8 +40,6 @@ public class UserEntity implements UserDetails {
     private String email;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
-    private UserType userType;
     @Column(nullable = false)
     private UserRole userRole;
     @Column(nullable = false)

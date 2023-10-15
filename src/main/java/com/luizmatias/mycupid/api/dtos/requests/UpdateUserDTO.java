@@ -41,7 +41,6 @@ public record UpdateUserDTO(
                 null,
                 null,
                 null,
-                null,
                 latitude,
                 longitude,
                 null,

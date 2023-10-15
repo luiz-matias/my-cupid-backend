@@ -102,16 +102,6 @@ public class ApiExceptionHandler {
         );
     }
 
-    @ResponseStatus(value = HttpStatus.CONFLICT)
-    @ExceptionHandler({LikeOnSameUserException.class, LikeOnSameUserTypeException.class})
-    public ApiErrorResponseDTO handleLikeExceptions(Exception ex) {
-        return new ApiErrorResponseDTO(
-                new Date(),
-                HttpStatus.CONFLICT.value(),
-                ex.getMessage()
-        );
-    }
-
     @ResponseStatus(value = HttpStatus.FORBIDDEN)
     @ExceptionHandler(NotAuthorizedException.class)
     public ApiErrorResponseDTO handleNotAuthorized(NotAuthorizedException ex) {

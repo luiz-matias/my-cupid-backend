@@ -1,10 +1,8 @@
 package com.luizmatias.mycupid.api.dtos.requests;
 
 import com.luizmatias.mycupid.api.dtos.mappers.UserRoleMapper;
-import com.luizmatias.mycupid.api.dtos.mappers.UserTypeMapper;
 import com.luizmatias.mycupid.api.validators.StrongPassword;
 import com.luizmatias.mycupid.api.validators.UserRole;
-import com.luizmatias.mycupid.api.validators.UserType;
 import com.luizmatias.mycupid.domain.entities.User;
 import jakarta.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -32,7 +30,6 @@ public record RegisterUserDTO(
         @StrongPassword
         String password,
         @NotNull
-        @UserType
         String userType,
         @NotNull
         @UserRole
@@ -55,7 +52,6 @@ public record RegisterUserDTO(
                 birth,
                 email,
                 password,
-                UserTypeMapper.toUserType(userType),
                 UserRoleMapper.toUserRole(userRole),
                 latitude,
                 longitude,

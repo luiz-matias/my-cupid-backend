@@ -8,7 +8,6 @@ import com.luizmatias.mycupid.db.models.UserEntity;
 import com.luizmatias.mycupid.domain.entities.Match;
 import com.luizmatias.mycupid.domain.exceptions.FailedToSendNotificationException;
 import com.luizmatias.mycupid.domain.exceptions.LikeOnSameUserException;
-import com.luizmatias.mycupid.domain.exceptions.LikeOnSameUserTypeException;
 import com.luizmatias.mycupid.domain.exceptions.ResourceNotFoundException;
 import com.luizmatias.mycupid.domain.usecases.like.RegisterLikeInteractor;
 import com.luizmatias.mycupid.domain.usecases.like.RemoveLikeInteractor;
@@ -36,7 +35,7 @@ public class LikeController {
 
     @Transactional
     @PostMapping(path = {"", "/"})
-    public ResponseEntity<RegisterLikeResponseDTO> registerLike(@RequestBody @Valid RegisterLikeDTO registerLikeDTO, @AuthenticationPrincipal UserEntity userEntity) throws ResourceNotFoundException, LikeOnSameUserException, LikeOnSameUserTypeException, FailedToSendNotificationException {
+    public ResponseEntity<RegisterLikeResponseDTO> registerLike(@RequestBody @Valid RegisterLikeDTO registerLikeDTO, @AuthenticationPrincipal UserEntity userEntity) throws ResourceNotFoundException, LikeOnSameUserException, FailedToSendNotificationException {
         Optional<Match> match = registerLikeInteractor.registerLike(userEntity.toUser(), registerLikeDTO.toId());
         return ResponseEntity.ok(new RegisterLikeResponseDTO(
                 match.isPresent(),

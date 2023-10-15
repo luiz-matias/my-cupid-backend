@@ -11,7 +11,6 @@ public class User {
     private Date birth;
     private String email;
     private String password;
-    private UserType userType;
     private UserRole userRole;
     private Double latitude;
     private Double longitude;
@@ -26,7 +25,7 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String firstName, String lastName, String bio, Date birth, String email, String password, UserType userType, UserRole userRole, Double latitude, Double longitude, Boolean isEmailVerified, List<User> likedUsers, List<User> likedByUsers, List<Match> matchesAsClient, List<Match> matchesAsDeveloper, List<UserTemporaryToken> userTemporaryTokens, List<Interest> interests) {
+    public User(Long id, String firstName, String lastName, String bio, Date birth, String email, String password, UserRole userRole, Double latitude, Double longitude, Boolean isEmailVerified, List<User> likedUsers, List<User> likedByUsers, List<Match> matchesAsClient, List<Match> matchesAsDeveloper, List<UserTemporaryToken> userTemporaryTokens, List<Interest> interests) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,7 +33,6 @@ public class User {
         this.birth = birth;
         this.email = email;
         this.password = password;
-        this.userType = userType;
         this.userRole = userRole;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -101,14 +99,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public UserType getUserType() {
-        return userType;
-    }
-
-    public void setUserType(UserType userType) {
-        this.userType = userType;
     }
 
     public UserRole getUserRole() {
