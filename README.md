@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <!-- <img src="https://i.imgur.com/42m4MaA.png" alt="Project Logo" height="150"> -->
-  <h1 align="center"My Cupid - Backend</h1>
+  <h1 align="center">My Cupid - Backend</h1>
   <p align="center">
     A platform that connects people in a Tinder-style experience.
   </p>
