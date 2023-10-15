@@ -3,11 +3,11 @@
 <br />
 <div align="center">
   <img src="https://i.imgur.com/42m4MaA.png" alt="Project Logo" height="150">
-  <h1 align="center">Find a Dev - Backend</h1>
+  <h1 align="center"My Cupid - Backend</h1>
   <p align="center">
-    A system that connects people in a Tinder-style experience.
+    A platform that connects people in a Tinder-style experience.
   </p>
-  <img align="center" src="https://github.com/luiz-matias/find-a-dev-backend/actions/workflows/maven.yml/badge.svg" alt="Tests status">
+  <img align="center" src="https://github.com/luiz-matias/my-cupid-backend/actions/workflows/maven.yml/badge.svg" alt="Tests status">
 </div>
 
 # Project Features
