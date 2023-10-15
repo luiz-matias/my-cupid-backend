@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.luizmatias</groupId>
-    <artifactId>findadev</artifactId>
+    <artifactId>mycupid</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Find A Dev</name>
-    <description>A system that connects developers and clients in a tinder-style experience.</description>
+    <name>My Cupid</name>
+    <description>A system that connects users in a tinder-style experience.</description>
     <properties>
         <java.version>17</java.version>
     </properties>
